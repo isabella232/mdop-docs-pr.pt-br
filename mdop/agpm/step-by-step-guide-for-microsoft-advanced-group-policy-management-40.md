@@ -1,0 +1,599 @@
+---
+title: Guia passo a passo do Gerenciamento Avançado de Política de Grupo 4.0 da Microsoft
+description: Guia passo a passo do Gerenciamento Avançado de Política de Grupo 4.0 da Microsoft
+author: dansimp
+ms.assetid: dc6f9b16-b1d4-48f3-88bb-f29301f0131c
+ms.reviewer: ''
+manager: dansimp
+ms.author: dansimp
+ms.pagetype: mdop
+ms.mktglfcycl: manage
+ms.sitesec: library
+ms.prod: w10
+ms.date: 08/30/2016
+ms.openlocfilehash: 819d536451095d23080115799016aa0ac5242dee
+ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "10797677"
+---
+# Guia passo a passo do Gerenciamento Avançado de Política de Grupo 4.0 da Microsoft
+
+
+Este guia passo a passo demonstra técnicas avançadas para o gerenciamento de política de grupo que usam o console de gerenciamento de política de grupo (GPMC) e o gerenciamento avançado de política de grupo (AGPM) da Microsoft. O AGPM aumenta a funcionalidade do GPMC, fornecendo:
+
+-   Funções padrão para delegar permissões para gerenciar GPOs (objetos de política de grupo) para vários administradores de política de grupo, além da capacidade de delegar o acesso a GPOs no ambiente de produção.
+
+-   Um arquivo morto para permitir que os administradores de política de grupo criem e modifiquem os GPOs offline antes de os GPOs serem implantados em um ambiente de produção.
+
+-   A capacidade de reverter para qualquer versão anterior de um GPO no arquivo morto e limitar o número de versões armazenadas no arquivo morto.
+
+-   Recurso de check-in e check-out de GPOs para garantir que os administradores de política de grupo não substituam acidentalmente uns dos outros.
+
+-   A capacidade de Pesquisar GPOs com atributos específicos e filtrar a lista de GPOs exibida.
+
+## Visão geral do cenário do AGPM
+
+
+Para esse cenário, você usará uma conta de usuário separada para cada função no AGPM para demonstrar como a política de grupo pode ser gerenciada em um ambiente com vários administradores de política de grupo com diferentes níveis de permissões. Especificamente, você vai executar as seguintes tarefas:
+
+-   Usando uma conta que seja membro do grupo Domain admins, instale o servidor do AGPM e atribua a função de administrador do AGPM a uma conta ou grupo.
+
+-   Usando contas às quais você atribuirá funções do AGPM, instale o cliente do AGPM.
+
+-   Usar uma conta que tenha a função de administrador do AGPM, configurar o AGPM e o acesso de representante a GPOs atribuindo funções a outras contas.
+
+-   Em uma conta que tem a função editor, solicite que um novo GPO seja criado e, em seguida, você aprove usando uma conta que tenha a função de aprovador. Use a conta editor para fazer check-out do GPO, edite o GPO, verifique o GPO no arquivo e, em seguida, solicite implantação.
+
+-   Usando uma conta que tenha a função Aprovador, examine o GPO e implante-o em seu ambiente de produção.
+
+-   Usando uma conta que tenha a função editor, crie um modelo de GPO e use-o como ponto de partida para criar um novo GPO.
+
+-   Usar uma conta que tenha a função de aprovador, excluir e restaurar um GPO.
+
+![processo de desenvolvimento de objetos de política de grupo](images/ab77a1f3-f430-4e7d-be58-ee8f9bd1140e.gif)
+
+## Requisitos
+
+
+Os computadores em que você deseja instalar o AGPM devem atender aos seguintes requisitos, e você deve criar contas para uso nesse cenário.
+
+**Observação**  Se você tiver o AGPM 2,5 instalado e estiver atualizando do Windows Server® 2003 para o Windows Server2008R2 ou Windows Server2008 ou estiver atualizando do WindowsVista sem nenhum Service Pack instalado para o Windows7 ou o WindowsVista® com Service Pack1 (SP1), você deve atualizar o sistema operacional antes de poder atualizar para o AGPM 4.0.
+
+Se você tiver o AGPM 3,0 instalado, não será necessário atualizar o sistema operacional antes de atualizar para o AGPM 4,0
+
+ 
+
+Em um ambiente misto que inclui sistemas operacionais mais recentes e mais antigos, há algumas limitações à funcionalidade, conforme indicado na tabela a seguir.
+
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Sistema operacional no qual o servidor do AGPM 4,0 é executado</th>
+<th align="left">Sistema operacional no qual o cliente do AGPM 4,0 é executado</th>
+<th align="left">Status do suporte do AGPM 4,0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Windows Server2008R2 ou Windows7</p></td>
+<td align="left"><p>Windows Server2008R2 ou Windows7</p></td>
+<td align="left"><p>Com suporte</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Windows Server2008R2 ou Windows7</p></td>
+<td align="left"><p>Windows Server2008 ou Windows Vista com SP1</p></td>
+<td align="left"><p>Com suporte, mas não é possível editar configurações de política ou itens de preferência que existem somente no Windows Server2008R2 ou no Windows7</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Windows Server2008 ou Windows Vista com SP1</p></td>
+<td align="left"><p>Windows Server2008R2 ou Windows7</p></td>
+<td align="left"><p>Sem Suporte</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Windows Server2008 ou Windows Vista com SP1</p></td>
+<td align="left"><p>Windows Server2008 ou Windows Vista com SP1</p></td>
+<td align="left"><p>Com suporte, mas não pode reportar ou editar configurações de política ou itens de preferência que existem somente no Windows Server2008R2 ou no Windows7</p></td>
+</tr>
+</tbody>
+</table>
+
+ 
+
+### Requisitos do servidor do AGPM
+
+O AGPM Server 4.0 requer o Windows Server2008R2, o Windows Server2008, o Windows Vista e o GPMC do RSAT (Remote Server Administration Tools) ou o Windows Vista com SP1 e o GPMC do RSAT instalados. Há suporte para as duas versões de 32 bits e de 64 bits.
+
+Antes de instalar o servidor do AGPM, você deve ser membro do grupo Domain admins e os seguintes recursos do Windows devem estar presentes, a menos que indicado de outra forma:
+
+-   GPMC
+
+    -   Windows Server2008R2 ou Windows Server2008: se o GPMC não estiver presente, ele será instalado automaticamente pelo AGPM.
+
+    -   Windows7: você deve instalar o GPMC a partir do RSAT antes de instalar o AGPM. Para obter mais informações, consulte [ferramentas de administração de servidor remoto para Windows 7](https://go.microsoft.com/fwlink/?LinkID=131280) ( https://go.microsoft.com/fwlink/?LinkID=131280) .
+
+    -   Windows Vista com SP1: você deve instalar o GPMC a partir do RSAT antes de instalar o AGPM. Para obter mais informações, consulte [ferramentas de administração de servidor remoto para Windows Vista com Service Pack 1](https://go.microsoft.com/fwlink/?LinkID=116179) ( https://go.microsoft.com/fwlink/?LinkID=116179) .
+
+-   O .NET Framework 3,5 ou versões posteriores
+
+    -   Windows Server2008R2 ou Windows7: se o .NET Framework 3,5 ou versão posterior não estiver presente, o .NET Framework 3,5 será automaticamente instalado pelo AGPM.
+
+    -   Windows Server2008 ou Windows Vista com SP1: você deve instalar o .NET Framework 3,5 ou uma versão posterior antes de instalar o AGPM.
+
+Os seguintes recursos do Windows são exigidos pelo servidor do AGPM e serão instalados automaticamente se não estiverem presentes:
+
+-   Ativação do WCF; Ativação não HTTP
+
+-   Serviço de Ativação de Processos do Windows
+
+    -   Modelo de processo
+
+    -   O ambiente .NET
+
+    -   APIs de configuração
+
+### Requisitos do cliente do AGPM
+
+O cliente do AGPM 4.0 requer o Windows Server2008R2, o Windows Server2008, o Windows7 e o GPMC do RSAT ou o Windows Vista com SP1 e o GPMC do RSAT instalados. Há suporte para as duas versões de 32 bits e de 64 bits. O cliente do AGPM pode ser instalado em um computador que esteja executando o servidor do AGPM.
+
+Os seguintes recursos do Windows são necessários para o cliente do AGPM e, a menos que indicado de outra forma, será automaticamente instalado se não estiverem presentes:
+
+-   GPMC
+
+    -   Windows Server2008R2 ou Windows Server2008: se o GPMC não estiver presente, ele será instalado automaticamente pelo AGPM.
+
+    -   Windows7: você deve instalar o GPMC a partir do RSAT antes de instalar o AGPM. Para obter mais informações, consulte [ferramentas de administração de servidor remoto para Windows 7](https://go.microsoft.com/fwlink/?LinkID=131280) ( https://go.microsoft.com/fwlink/?LinkID=131280) .
+
+    -   Windows Vista com SP1: você deve instalar o GPMC a partir do RSAT antes de instalar o AGPM. Para obter mais informações, consulte [ferramentas de administração de servidor remoto para Windows Vista com Service Pack 1](https://go.microsoft.com/fwlink/?LinkID=116179) ( https://go.microsoft.com/fwlink/?LinkID=116179) .
+
+-   O .NET Framework 3,0 ou versão posterior
+
+    -   Windows Server2008R2 ou Windows7: se o .NET Framework 3,0 ou versão posterior não estiver presente, o .NET Framework 3,5 será automaticamente instalado pelo AGPM.
+
+    -   Windows Server2008 ou Windows Vista com SP1: se o .NET Framework 3,0 ou versão posterior não estiver presente, o .NET Framework 3,0 será automaticamente instalado pelo AGPM.
+
+### Requisitos do cenário
+
+Antes de iniciar esse cenário, crie quatro contas de usuário. Durante o cenário, você atribuirá uma das seguintes funções do AGPM a cada uma dessas contas: administrador do AGPM (controle total), Aprovador, editor e revisor. Essas contas devem ser capazes de enviar e receber mensagens de email. Atribua a permissão de **vincular GPOs** às contas que têm as funções de editor do administrador do AGPM, Aprovador e (opcionalmente).
+
+**Observação** 
+ A permissão **vincular GPOs** é atribuída a membros de administradores de domínio e administradores corporativos por padrão. Para atribuir a permissão de **vincular GPOs** a usuários ou grupos adicionais (como contas que têm as funções de administrador do AGPM ou aprovador), clique no nó do domínio e clique na guia **delegação** , selecione **vincular GPOs**, clique em **Adicionar**e selecione os usuários ou grupos aos quais você deseja atribuir a permissão.
+
+ 
+
+## Etapas para instalar e configurar o AGPM
+
+
+Você deve completar as etapas a seguir para instalar e configurar o AGPM.
+
+[Etapa 1: instalar o servidor do AGPM](#bkmk-config1)
+
+[Etapa 2: instalar o cliente do AGPM](#bkmk-config2)
+
+[Etapa 3: configurar uma conexão com o servidor do AGPM](#bkmk-config3)
+
+[Etapa 4: configurar a notificação por email](#bkmk-config4)
+
+[Etapa 5: delegar acesso](#bkmk-config5)
+
+### <a href="" id="bkmk-config1"></a>Etapa 1: instalar o servidor do AGPM
+
+Nesta etapa, você instala o servidor do AGPM no servidor membro ou controlador de domínio que executará o serviço do AGPM e você poderá configurar o arquivo morto. Todas as operações do AGPM são gerenciadas por meio desse serviço do Windows e são executadas com as credenciais do serviço. O arquivo gerenciado por um servidor do AGPM pode ser hospedado nesse servidor ou em outro servidor na mesma floresta.
+
+**Para instalar o servidor do AGPM no computador que irá hospedar o serviço do AGPM**
+
+1.  Faça logon com uma conta que seja membro do grupo Domain admins.
+
+2.  Inicie o CD do Microsoft Desktop Optimization Pack e siga as instruções na tela para selecionar **Advanced Group Policy Management-Server**.
+
+3.  Na caixa de diálogo de **boas-vindas** , clique em **Avançar**.
+
+4.  Na caixa de diálogo **termos de licença para software da Microsoft** , aceite os termos e clique em **Avançar**.
+
+5.  Na caixa de diálogo **caminho do aplicativo** , selecione um local no qual instalar o servidor do AGPM. O computador no qual o servidor do AGPM está instalado hospedará o serviço do AGPM e gerenciará o arquivo morto. Clique em **Avançar**.
+
+6.  Na caixa de diálogo **caminho do arquivo morto** , selecione um local para o arquivo morto em relação ao servidor do AGPM. O caminho do arquivo morto pode apontar para uma pasta no servidor do AGPM ou em outro lugar. No entanto, você deve selecionar um local com espaço suficiente para armazenar todos os GPOs e dados de histórico gerenciados por esse servidor do AGPM. Clique em **Avançar**.
+
+7.  Na caixa de diálogo **conta de serviço do AGPM** , selecione uma conta de serviço na qual o serviço do AGPM será executado e clique em **Avançar**.
+
+    Essa conta deve ser membro do grupo Domain admins ou, para uma configuração de menos privilégios, os seguintes grupos em cada domínio gerenciados pelo servidor do AGPM:
+
+    -   Proprietários criadores de política de grupo
+
+    -   Operadores de backup
+
+    Além disso, essa conta exige permissão de controle total para as seguintes pastas:
+
+    -   A pasta de arquivo de AGPM, para a qual essa permissão é concedida automaticamente durante a instalação do servidor do AGPM se ela estiver instalada em uma unidade local.
+
+    -   A pasta temporária do sistema local, geralmente%WINDIR%\\temp.
+
+8.  Na caixa de diálogo **proprietário do arquivo** , selecione uma conta ou grupo à qual você atribui a função de administrador do AGPM (controle total). Os administradores do AGPM podem atribuir funções do AGPM e permissões a outros administradores de política de grupo para que, posteriormente, você possa atribuir a função de administrador do AGPM a administradores adicionais de política de grupo. Para esse cenário, selecione a conta a ser usada na função de administrador do AGPM. Clique em **Avançar**.
+
+9.  Na caixa de diálogo **configuração de portabilidade** , digite uma porta na qual o serviço do AGPM deve escutar. Não desmarque a caixa de seleção **Adicionar exceção de porta ao firewall** , a menos que você configure manualmente exceções de porta ou use regras para configurar exceções de porta. Clique em **Avançar**.
+
+10. Na caixa de diálogo **idiomas** , selecione um ou mais idiomas de exibição para instalar no servidor do AGPM.
+
+11. Clique em **instalar**e, em seguida, clique em **concluir** para sair do assistente de configuração.
+
+    **Cuidado**  Não altere as configurações do serviço do AGPM por meio de ferramentas e **Serviços** **administrativos** no sistema operacional. Isso pode impedir que o serviço do AGPM seja iniciado. Para obter informações sobre como alterar as configurações do serviço, consulte a ajuda para gerenciamento avançado de política de grupo.
+
+     
+
+### <a href="" id="bkmk-config2"></a>Etapa 2: instalar o cliente do AGPM
+
+Cada administrador da política de grupo — qualquer pessoa que cria, edita, implanta, revisa ou exclui GPOs — deve ter o cliente do AGPM instalado em computadores que eles usam para gerenciar GPOs. O nó de controle de alterações, que você usa para executar muitas das tarefas de gerenciamento de GPO, aparecerá no console de gerenciamento de política de grupo somente se você instalar o cliente do AGPM. Para esse cenário, instale o cliente do AGPM em pelo menos um computador. Você não precisa instalar o cliente do AGPM nos computadores dos usuários finais que não executam a administração da política de grupo.
+
+**Para instalar o cliente do AGPM no computador de um administrador de política de grupo**
+
+1.  Inicie o CD do Microsoft Desktop Optimization Pack e siga as instruções na tela para selecionar **gerenciamento avançado de política de grupo-cliente**.
+
+2.  Na caixa de diálogo de **boas-vindas** , clique em **Avançar**.
+
+3.  Na caixa de diálogo **termos de licença para software da Microsoft** , aceite os termos e clique em **Avançar**.
+
+4.  Na caixa de diálogo **caminho do aplicativo** , selecione um local no qual instalar o cliente do AGPM. Clique em **Avançar**.
+
+5.  Na caixa de diálogo **servidor de AGPM** , digite o nome DNS ou o endereço IP do servidor do AGPM e a porta à qual você deseja se conectar. A porta padrão do serviço do AGPM é 4600. Não desmarque a caixa de seleção **permitir o console de gerenciamento da Microsoft por meio do firewall** , a menos que você configure manualmente exceções de porta ou use regras para configurar exceções de porta. Clique em **Avançar**.
+
+6.  Na caixa de diálogo **idiomas** , selecione um ou mais idiomas de exibição para instalar para o cliente do AGPM.
+
+7.  Clique em **instalar**e, em seguida, clique em **concluir** para sair do assistente de configuração.
+
+### <a href="" id="bkmk-config3"></a>Etapa 3: configurar uma conexão com o servidor do AGPM
+
+O AGPM armazena todas as versões de cada objeto de política de grupo (GPO) controlado, ou seja, cada GPO para o qual o AGPM fornece controle de alterações, em um arquivo morto central. Isso permite que os administradores de política de grupo exibam e alterem os GPOs offline sem afetar imediatamente a versão implantada de cada GPO.
+
+Nesta etapa, você configura uma conexão do servidor do AGPM e garante que todos os administradores de política de grupo se conectam ao mesmo servidor de AGPM. (Para obter informações sobre como configurar vários servidores do AGPM, consulte a ajuda para gerenciamento avançado de política de grupo.)
+
+**Para configurar uma conexão do servidor do AGPM para todos os administradores de política de grupo**
+
+1.  Em um computador no qual você instalou o cliente do AGPM, faça logon com a conta de usuário selecionada como o proprietário do arquivo. Esse usuário tem a função de administrador do AGPM (controle total).
+
+2.  Clique em **Iniciar**, aponte para **Ferramentas administrativas**e clique em **Gerenciamento de política de grupo** para abrir o GPMC.
+
+3.  Editar um GPO aplicado a todos os administradores de política de grupo.
+
+4.  Na janela **Editor de gerenciamento de política de grupo** , clique duas vezes em **configuração do usuário**, **políticas**, **modelos administrativos**, **componentes do Windows**e **AGPM**.
+
+5.  No painel detalhes, clique duas vezes em **AGPM: especifique o servidor do AGPM padrão (todos os domínios)**.
+
+6.  Na janela **Propriedades** , selecione **habilitado** e digite o nome DNS ou o endereço IP e a portabilidade (por exemplo, **Server.contoso.com:4600**) para o servidor que hospeda o arquivo morto. Por padrão, o serviço do AGPM usa a porta 4600.
+
+7.  Clique em **OK**e feche a janela do **Editor de gerenciamento de política de grupo** . Quando a política de grupo é atualizada, a conexão do servidor do AGPM é configurada para cada administrador de política de grupo.
+
+### <a href="" id="bkmk-config4"></a>Etapa 4: configurar a notificação por email
+
+Como administrador do AGPM (controle total), você designa os endereços de email de aprovadores e administradores do AGPM para quem uma mensagem de email contendo uma solicitação é enviada quando um editor tenta criar, implantar ou excluir um GPO. Você também pode determinar o alias do qual essas mensagens são enviadas.
+
+**Para configurar a notificação por email para o AGPM**
+
+1.  No **Editor de gerenciamento de política de grupo** , navegue até a pasta **alterar controle** 
+
+2.  No painel de detalhes, clique na guia de **delegação de domínio** .
+
+3.  No campo **do endereço de email** , digite o alias de email do AGPM do qual as notificações devem ser enviadas.
+
+4.  No campo **endereço de email para** , digite o endereço de email da conta de usuário à qual você pretende atribuir a função de aprovador.
+
+5.  No campo **servidor SMTP** , digite um servidor de email SMTP válido.
+
+6.  Nos campos **nome de usuário** e **senha** , digite as credenciais de um usuário que tenha acesso ao serviço SMTP. Clique em **Aplicar**.
+
+### <a href="" id="bkmk-config5"></a>Etapa 5: delegar acesso
+
+Como administrador do AGPM (controle total), você delega o acesso no nível do domínio aos GPOs, atribuindo funções à conta de cada administrador de política de grupo.
+
+**Observação**  Você também pode delegar o acesso no nível do GPO em vez do nível do domínio. Para obter mais informações, consulte ajuda para gerenciamento avançado de política de grupo.
+
+ 
+
+**Importante**  Você deve restringir a participação no grupo proprietários criadores de política de grupo para que ela não possa ser usada para burlar o gerenciamento de AGPM do acesso a GPOs. (No **console de gerenciamento de política de grupo**, clique em objetos de política de **grupo** na floresta e no domínio dos quais você deseja gerenciar GPOs, clique em **delegação**e, em seguida, defina as configurações para atender às necessidades da sua organização.)
+
+ 
+
+**Para delegar o acesso a todos os GPOs em um domínio**
+
+1.  Na guia **delegação de domínio** , clique no botão **Adicionar** , selecione a conta de usuário do administrador de política de grupo para atuar como Aprovador e, em seguida, clique em **OK**.
+
+2.  Na caixa de diálogo **Adicionar grupo ou usuário** , selecione a função **Aprovador** para atribuir a função à conta e clique em **OK**. (Essa função inclui a função de revisor.)
+
+3.  Clique no botão **Adicionar** , selecione a conta de usuário do administrador de política de grupo para atuar como editor e clique em **OK**.
+
+4.  Na caixa de diálogo **Adicionar grupo ou usuário** , selecione a função de **Editor** para atribuir a função à conta e clique em **OK**. (Essa função inclui a função de revisor.)
+
+5.  Clique no botão **Adicionar** , selecione a conta de usuário do administrador de política de grupo para atuar como revisor e clique em **OK**.
+
+6.  Na caixa de diálogo **Adicionar grupo ou usuário** , selecione a função **revisor** para atribuir apenas essa função à conta.
+
+## Etapas para gerenciar GPOs
+
+
+Você deve completar as etapas a seguir para criar, editar, revisar e implantar GPOs usando o AGPM. Além disso, você criará um modelo, excluirá um GPO e restaurará um GPO excluído.
+
+[Etapa 1: criar um GPO](#bkmk-manage1)
+
+[Etapa 2: editar um GPO](#bkmk-manage2)
+
+[Etapa 3: revisar e implantar um GPO](#bkmk-manage3)
+
+[Etapa 4: usar um modelo para criar um GPO](#bkmk-manage4)
+
+[Etapa 5: excluir e restaurar um GPO](#bkmk-manage5)
+
+### <a href="" id="bkmk-manage1"></a>Etapa 1: criar um GPO
+
+Em um ambiente com vários administradores de política de grupo, aqueles com a função editor podem solicitar que novos GPOs sejam criados. No entanto, essa solicitação deve ser aprovada por alguém com a função de aprovador.
+
+Nesta etapa, você usa uma conta que tem a função de editor para solicitar que um novo GPO seja criado. Usando uma conta que tenha a função Aprovador, você aprova essa solicitação para criar o GPO.
+
+**Para solicitar que um novo GPO seja criado e gerenciado pelo AGPM**
+
+1.  Em um computador no qual você instalou o cliente do AGPM, faça logon com uma conta de usuário à qual a função de editor foi atribuída no AGPM.
+
+2.  Na árvore do **console de gerenciamento de política de grupo** , clique em **alterar controle** na floresta e no domínio dos quais você deseja gerenciar GPOs.
+
+3.  Clique com o botão direito do mouse no nó de **controle de alterações** e clique em **novo GPO controlado**.
+
+4.  Na caixa de diálogo **novo GPO controlado** :
+
+    1.  Para receber uma cópia da solicitação, digite o seu endereço de email no campo **CC** .
+
+    2.  Digite **MyGPO** como o nome do novo GPO.
+
+    3.  Digite um comentário para o novo GPO.
+
+    4.  Clique em **criar ao vivo** de modo que o novo GPO seja implantado para o ambiente de produção imediatamente após a aprovação. Clique em **Enviar**.
+
+5.  Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. O novo GPO será exibido na guia **pendente** .
+
+**Para aprovar a solicitação pendente para criar um GPO**
+
+1.  Em um computador no qual você instalou o cliente do AGPM, faça logon com uma conta de usuário que tenha a função de aprovador no AGPM.
+
+2.  Abra a caixa de entrada de email da conta e observe que você recebeu uma mensagem de email do alias do AGPM com a solicitação do editor para criar um GPO.
+
+3.  Na árvore do **console de gerenciamento de política de grupo** , clique em **alterar controle** na floresta e no domínio dos quais você deseja gerenciar GPOs.
+
+4.  Na guia **conteúdo** , clique na guia **pendente** para exibir os GPOs pendentes.
+
+5.  Clique com o botão direito do mouse em **MyGPO**e, em seguida, clique em **aprovar**.
+
+6.  Clique em **Sim** para confirmar a aprovação e mover o GPO para a guia **controlado** .
+
+### <a href="" id="bkmk-manage2"></a>Etapa 2: editar um GPO
+
+Você pode usar GPOs para configurar o computador ou o usuário e implantá-los em muitos computadores ou usuários. Nesta etapa, você usa uma conta que tem a função de editor para fazer check-out de um GPO do arquivo, editar o GPO offline, verificar o GPO editado no arquivo e solicitar a implantação do GPO ao ambiente de produção. Nesse cenário, você define uma configuração no GPO para exigir que a senha tenha pelo menos oito caracteres de comprimento.
+
+**Para fazer check-out do GPO do arquivo para edição**
+
+1.  Em um computador no qual você instalou o cliente do AGPM, faça logon com uma conta de usuário que tenha a função de editor no AGPM.
+
+2.  Na árvore do **console de gerenciamento de política de grupo** , clique em **alterar controle** na floresta e no domínio dos quais você deseja gerenciar GPOs.
+
+3.  Na guia **conteúdo** do painel detalhes, clique na guia **controlado** para exibir os GPOs controlados.
+
+4.  Clique com o botão direito do mouse em **MyGPO**e clique em **check-out**.
+
+5.  Digite um comentário a ser exibido no histórico do GPO durante o check-out e, em seguida, clique em **OK**.
+
+6.  Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. Na guia **controlado** , o estado do GPO é identificado como Checked- **out**.
+
+**Para editar o GPO offline e configurar o tamanho mínimo da senha**
+
+1.  Na guia **controlado** , clique com o botão direito do mouse em **MyGPO**e, em seguida, clique em **Editar** para abrir a janela do **Editor de gerenciamento de política de grupo** e alterar uma cópia offline do GPO. Para esse cenário, configure o tamanho mínimo da senha:
+
+    1.  Em **configuração do computador**, clique duas vezes em **políticas**, **configurações do Windows**, configurações de **segurança**, **políticas de conta**e **política de senha**.
+
+    2.  No painel de detalhes, clique duas vezes em **tamanho mínimo da senha**.
+
+    3.  Na janela Propriedades, marque a caixa de seleção **definir esta configuração de política** , defina o número de caracteres para **8**e, em seguida, clique em **OK**.
+
+2.  Feche a janela do **Editor de gerenciamento de política de grupo** .
+
+**Para verificar o GPO no arquivo morto**
+
+1.  Na guia **controlado** , clique com o botão direito do mouse em **MyGPO** e clique em **check-in**.
+
+2.  Digite um comentário e, em seguida, clique em **OK**.
+
+3.  Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. Na guia **controlado** , o estado do GPO é identificado como **checked-in**.
+
+**Para solicitar a implantação do GPO ao ambiente de produção**
+
+1.  Na guia **controlado** , clique com o botão direito do mouse em **MyGPO** e clique em **implantar**.
+
+2.  Como essa conta não é um Aprovador ou administrador do AGPM, você deve enviar uma solicitação de implantação. Para receber uma cópia da solicitação, digite o seu endereço de email no campo **CC** . Digite um comentário a ser exibido no histórico do GPO e, em seguida, clique em **Enviar**.
+
+3.  Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. **MyGPO** é exibido na lista de GPOs na guia **pendente** .
+
+### <a href="" id="bkmk-manage3"></a>Etapa 3: revisar e implantar um GPO
+
+Nesta etapa, você atua como Aprovador, criando relatórios e analisando as configurações e alterando as configurações no GPO para determinar se devem ser aprovadas. Depois de avaliar o GPO, implante-o no ambiente de produção e vincule o GPO a um domínio ou a uma unidade organizacional (OU). O GPO entra em vigor quando a política de grupo é atualizada para computadores nesse domínio ou unidade organizacional.
+
+**Para revisar as configurações no GPO**
+
+1. Em um computador no qual você instalou o cliente do AGPM, faça logon com uma conta de usuário à qual a função de aprovador está atribuída no AGPM. Qualquer administrador da política de grupo com a função revisor, que está incluída em todas as outras funções, pode revisar as configurações em um GPO.
+
+2. Abra a caixa de entrada de email da conta e observe que você recebeu uma mensagem de email do alias do AGPM com uma solicitação de editor para implantar um GPO.
+
+3. Na árvore do **console de gerenciamento de política de grupo** , clique em **alterar controle** na floresta e no domínio dos quais você deseja gerenciar GPOs.
+
+4. Na guia **conteúdo** do painel detalhes, clique na guia **pendente** .
+
+5. Clique duas vezes em **MyGPO** para exibir seu histórico.
+
+6. Examine as configurações na versão mais recente do MyGPO:
+
+   1.  Na janela do **histórico** , clique com o botão direito do mouse na versão do GPO com o carimbo de data/hora mais recente, clique em **configurações**e, em seguida, clique em **relatório HTML** para exibir um resumo das configurações do GPO.
+
+   2.  No navegador da Web, clique em **Mostrar tudo** para exibir todas as configurações no GPO. Feche a janela do navegador.
+
+7. Compare a versão mais recente do MyGPO com a primeira versão verificada no arquivo morto:
+
+   1. Na janela do **histórico** , clique na versão do GPO com o carimbo de data/hora mais recente. Pressione CTRL e clique na versão do GPO mais antiga para a qual a **versão do computador** não é * * \ \ * * *.
+
+   2. Clique no botão **diferenças** . A seção **políticas de conta/política de senha** é realçada em verde e precedida por **\ [+ \]**. Isso indica que a configuração é configurada somente na última versão do GPO.
+
+   3. Clique em **políticas de conta/política de senha**. A configuração **comprimento mínimo da senha** também é realçada em verde e precedida por **\ [+ \]**, indicando que ela está configurada somente na última versão do GPO.
+
+   4. Fechar o navegador da Web.
+
+**Para implantar o GPO no ambiente de produção**
+
+1.  Na guia **pendente** , clique com o botão direito do mouse em **MyGPO** e, em seguida, clique em **aprovar**.
+
+2.  Digite um comentário para incluir no histórico do GPO.
+
+3.  Clique em **Sim**. Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. O GPO é implantado no ambiente de produção.
+
+**Para vincular o GPO a um domínio ou unidade organizacional**
+
+1.  No GPMC, clique com o botão direito do mouse no domínio ou em uma UO (unidade organizacional) à qual você deseja aplicar o GPO que você configurou e clique em **vincular um GPO existente**.
+
+2.  Na caixa de diálogo **selecionar GPO** , clique em **MyGPO**e, em seguida, clique em **OK**.
+
+### <a href="" id="bkmk-manage4"></a>Etapa 4: usar um modelo para criar um GPO
+
+Nesta etapa, você usa uma conta que tem a função de editor para criar e usar um modelo. Esse modelo é uma versão estática de um GPO para uso como um ponto de partida para a criação de novos GPOs. Embora não seja possível editar um modelo, você pode criar um novo GPO com base em um modelo. Os modelos são úteis para criar rapidamente vários GPOs que incluam muitas das mesmas configurações de política.
+
+**Para criar um modelo com base em um GPO existente**
+
+1.  Em um computador no qual você instalou o cliente do AGPM, faça logon com uma conta de usuário à qual a função do editor seja atribuída no AGPM.
+
+2.  Na árvore do **console de gerenciamento de política de grupo** , clique em **alterar controle** na floresta e no domínio dos quais você deseja gerenciar GPOs.
+
+3.  Na guia **conteúdo** do painel detalhes, clique na guia **controlado** .
+
+4.  Clique com o botão direito do mouse em **MyGPO**e clique em **salvar como modelo** para criar um modelo que incorpora todas as configurações no MyGPO.
+
+5.  Digite **MyTemplate** como o nome do modelo e um comentário e, em seguida, clique em **OK**.
+
+6.  Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. O novo modelo aparece na guia **modelos** .
+
+**Para solicitar que um novo GPO seja criado e gerenciado pelo AGPM**
+
+1.  Clique na guia **controlado** .
+
+2.  Clique com o botão direito do mouse no nó de **controle de alterações** e clique em **novo GPO controlado**.
+
+3.  Na caixa de diálogo **novo GPO controlado** :
+
+    1.  Para receber uma cópia da solicitação, digite o seu endereço de email no campo **CC** .
+
+    2.  Digite **MyOtherGPO** como o nome do novo GPO.
+
+    3.  Digite um comentário para o novo GPO.
+
+    4.  Clique em **criar ao vivo** de modo que o novo GPO seja implantado para o ambiente de produção imediatamente após a aprovação.
+
+    5.  Em **modelo de GPO**, selecione **MyTemplate**. Clique em **Enviar**.
+
+4.  Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. O novo GPO será exibido na guia **pendente** .
+
+Use uma conta que é atribuída à função de aprovador para aprovar a solicitação pendente para criar o GPO da mesma forma que você fez na [etapa 1: criar um GPO](#bkmk-manage1). MyTemplate incorpora todas as configurações que você configurou no MyGPO. Como o MyOtherGPO foi criado usando MyTemplate, ele primeiro contém todas as configurações que MyGPO no momento em que MyTemplate foi criado. Você pode confirmar isso gerando um relatório de diferença para comparar MyOtherGPO ao MyTemplate.
+
+**Para fazer check-out do GPO do arquivo para edição**
+
+1.  Em um computador no qual você instalou o cliente do AGPM, faça logon com uma conta de usuário à qual a função do editor seja atribuída no AGPM.
+
+2.  Clique com o botão direito do mouse em **MyOtherGPO**e clique em **check-out**.
+
+3.  Digite um comentário a ser exibido no histórico do GPO durante o check-out e, em seguida, clique em **OK**.
+
+4.  Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. Na guia **controlado** , o estado do GPO é identificado como Checked- **out**.
+
+**Para editar o GPO offline e configurar a duração do bloqueio de conta**
+
+1.  Na guia **controlado** , clique com o botão direito do mouse em **MyOtherGPO**e, em seguida, clique em **Editar** para abrir a janela do **Editor de gerenciamento de política de grupo** e alterar uma cópia offline do GPO. Para esse cenário, configure o tamanho mínimo da senha:
+
+    1.  Em **configuração do computador**, clique duas vezes em **políticas**, **configurações do Windows**, **configurações de segurança**, políticas de **conta**e política de **bloqueio de conta**.
+
+    2.  No painel de detalhes, clique duas vezes em **duração do bloqueio de conta**.
+
+    3.  Na janela Propriedades, marque **definir esta configuração de política**, defina a duração como **30** minutos e clique em **OK**.
+
+2.  Feche a janela do **Editor de gerenciamento de política de grupo** .
+
+Verifique MyOtherGPO no arquivo morto e solicite a implantação como você fez para o MyGPO na [etapa 2: editar um GPO](#bkmk-manage2). Você pode comparar o MyOtherGPO ao MyGPO ou ao MyTemplate usando relatórios de diferença. Qualquer conta que inclua a função de Revisor (administrador do AGPM \ [controle total \], Aprovador, editor ou revisor) pode gerar relatórios.
+
+**Para comparar um GPO a outro GPO e a um modelo**
+
+1.  Para comparar o MyGPO e o MyOtherGPO:
+
+    1.  Na guia **controlado** , clique em **MyGPO**. Pressione CTRL e clique em **MyOtherGPO**.
+
+    2.  Clique com o botão direito do mouse em **MyOtherGPO**, aponte para **diferenças**e clique em **relatório HTML**.
+
+2.  Para comparar MyOtherGPO e MyTemplate:
+
+    1.  Na guia **controlado** , clique em **MyOtherGPO**.
+
+    2.  Clique com o botão direito do mouse em **MyOtherGPO**, aponte para **diferenças**e clique em **modelo**.
+
+    3.  Selecione meu **modelo** e **relatório HTML**e, em seguida, clique em **OK**.
+
+### <a href="" id="bkmk-manage5"></a>Etapa 5: excluir e restaurar um GPO
+
+Nesta etapa, você atua como um Aprovador para excluir um GPO.
+
+**Para excluir um GPO**
+
+1.  Em um computador no qual você instalou o cliente do AGPM, faça logon com uma conta de usuário à qual a função de aprovador está atribuída.
+
+2.  Na árvore do **console de gerenciamento de política de grupo** , clique em **alterar controle** na floresta e no domínio dos quais você deseja gerenciar GPOs.
+
+3.  Na guia **conteúdo** , clique na guia **controlado** para exibir os GPOs controlados.
+
+4.  Clique com o botão direito do mouse em **MyGPO**e, em seguida, clique em **excluir**. Clique em **excluir GPO do arquivo morto e da produção** para excluir a versão no arquivo morto e a versão implantada do GPO no ambiente de produção.
+
+5.  Digite um comentário a ser exibido na trilha de auditoria do GPO e clique em **OK**.
+
+6.  Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. O GPO é removido da guia **controlado** e é exibido na guia **Lixeira** , onde ele pode ser restaurado ou destruído.
+
+Às vezes, você pode descobrir depois de excluir um GPO que ainda é necessário. Nesta etapa, você atua como um Aprovador para restaurar um GPO que foi excluído.
+
+**Para restaurar um GPO excluído**
+
+1.  Na guia **conteúdo** , clique na guia da **Lixeira** para exibir os GPOs excluídos.
+
+2.  Clique com o botão direito do mouse em **MyGPO**e clique em **restaurar**.
+
+3.  Digite um comentário a ser exibido no histórico do GPO e clique em **OK**.
+
+4.  Quando a janela de **progresso do AGPM** indicar que o progresso geral foi concluído, clique em **fechar**. O GPO será removido da guia **Lixeira** e será exibido na guia **controlado** .
+
+    **Observação**  Restaurar um GPO para o arquivo não o reimplanta automaticamente no ambiente de produção. Para retornar o GPO ao ambiente de produção, implante o GPO da [etapa 3: revise e implante um GPO](#bkmk-manage3).
+
+     
+
+Depois de editar e implantar um GPO, você pode descobrir que alterações recentes no GPO estão causando um problema. Nesta etapa, você atua como um Aprovador para reverter para uma versão anterior do GPO. Você pode reverter para qualquer versão do histórico do GPO. Você pode usar comentários e rótulos para identificar versões válidas conhecidas e quando foram feitas alterações específicas.
+
+**Para reverter para uma versão anterior de um GPO**
+
+1.  Na guia **conteúdo** , clique na guia **controlado** para exibir os GPOs controlados.
+
+2.  Clique duas vezes em **MyGPO** para exibir seu histórico.
+
+3.  Clique com o botão direito do mouse na versão a ser implantada, clique em **implantar**e, em seguida, clique em **Sim**.
+
+4.  Quando a janela de **progresso** indicar que o progresso geral foi concluído, clique em **fechar**. Na janela do **histórico** , clique em **fechar**.
+
+    **Observação**  Para verificar se a versão que foi reimplementada é a versão pretendida, examine um relatório de diferença para as duas versões. Na janela do **histórico** do GPO, selecione as duas versões, clique com o botão direito do mouse nelas, aponte para **diferença**e clique em **relatório HTML** ou **relatório XML**.
+
+     
+
+ 
+
+ 
+
+
+
+
+
