@@ -11,12 +11,12 @@ ms.mktglfcycl: manage
 ms.sitesec: library
 ms.prod: w10
 ms.date: 09/27/2016
-ms.openlocfilehash: a98bda82fab561113522382b4de6539a9dc23d0c
-ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.openlocfilehash: 44e7dc6c5de75ae3a5e5def638974bae20ad2a1e
+ms.sourcegitcommit: 594b6e431af98562e0b806e224d2c5c7e07d2c77
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "10797661"
+ms.lasthandoff: 07/27/2020
+ms.locfileid: "10895761"
 ---
 # Novidades do AGPM 4.0 SP3
 
@@ -137,6 +137,11 @@ O AGPM 4.0 SP3 dá suporte às configurações da tabela a seguir. Embora o AGPM
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td align="left"><p>Windows Server 2019 ou Windows 10</p></td>
+<td align="left"><p>Windows 10</p></td>
+<td align="left"><p>Suportado</p></td>
+</tr>
 <tr class="odd">
 <td align="left"><p>Windows Server 2016 ou Windows 10</p></td>
 <td align="left"><p>Windows 10</p></td>
