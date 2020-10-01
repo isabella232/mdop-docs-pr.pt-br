@@ -11,12 +11,12 @@ ms.mktglfcycl: manage
 ms.sitesec: library
 ms.prod: w10
 ms.date: 2/16/2018
-ms.openlocfilehash: 19da3df0976b51700e0d10c302a31421a88d17e4
-ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.openlocfilehash: 330ded822dd9da96a1c33eabcb31d744044dc28e
+ms.sourcegitcommit: ae34c5cb5e7979b472b257a4691142e493d5d6fe
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "10796076"
+ms.lasthandoff: 09/30/2020
+ms.locfileid: "11091616"
 ---
 # Atualizando do MBAM 2.5 para o MBAM 2.5 SP1
 Este tópico descreve o processo de atualização do servidor de administração e monitoramento do Microsoft BitLocker (MBAM) 2,5 e do cliente MBAM do 2,5 para o MBAM 2,5 SP1.
@@ -24,6 +24,10 @@ Este tópico descreve o processo de atualização do servidor de administração
 ### Antes de começar
 #### Baixe o lançamento de manutenção de maio de 2019
 [Desktop Optimization Pack](https://www.microsoft.com/download/details.aspx?id=58345)
+
+#### Baixe o lançamento de manutenção de julho de 2018
+[Desktop Optimization Pack](https://www.microsoft.com/download/details.aspx?id=57157)
+
 
 #### Verificar a instalação do documentaion
 Verifique se você tem uma documentação atual do seu ambiente MBAM, incluindo todos os nomes de servidor, nomes de banco de dados, contas de serviço e suas senhas.
