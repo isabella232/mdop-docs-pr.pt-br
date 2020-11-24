@@ -11,12 +11,12 @@ ms.mktglfcycl: manage
 ms.sitesec: library
 ms.prod: w10
 ms.date: 10/24/2018
-ms.openlocfilehash: 262cd8c259dc37b291cdaf02caf0e20b7515d38b
-ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.openlocfilehash: 8ed7915e33c5e4735a7c58674ed5f7d6da8e9a06
+ms.sourcegitcommit: 9087f0a1b5bd3f81a9b790d5e39fdf39c18a2411
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "10799363"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "11182923"
 ---
 # Configurações com suporte no MBAM 2.5
 
@@ -33,7 +33,7 @@ A Microsoft oferece suporte para o Service Pack atual e, em alguns casos, o Serv
 ## Idiomas com suporte do MBAM
 
 
-As tabelas a seguir mostram os idiomas com suporte para o cliente MBAM (incluindo o portal de autoatendimento) e o servidor MBAM no MBAM 2,5 e MBAM 2,5 SP1.
+As tabelas a seguir mostram os idiomas com suporte para o cliente MBAM (incluindo o portal Self-Service) e o servidor MBAM no MBAM 2,5 e MBAM 2,5 SP1.
 
 **Idiomas com suporte no MBAM 2,5 SP1:**
 
@@ -166,6 +166,12 @@ A tabela a seguir lista os sistemas operacionais suportados para a instalação 
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left"><p>Windows Server 2019</p></td>
+<td align="left"><p>Padrão ou Datacenter</p></td>
+<td align="left"></td>
+<td align="left"><p>64 bits</p></td>
+</tr>
+<tr class="odd">
 <td align="left"><p>Windows Server 2016</p></td>
 <td align="left"><p>Padrão ou Datacenter</p></td>
 <td align="left"></td>
@@ -215,7 +221,7 @@ Esses requisitos são para a topologia autônoma do MBAM. Para obter os requisit
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><p>Processador</p></td>
+<td align="left"><p>Processor</p></td>
 <td align="left"><p>2,33 GHz</p></td>
 <td align="left"><p>2,33 GHz ou mais</p></td>
 </tr>
@@ -253,7 +259,7 @@ A tabela a seguir lista os requisitos do processador do servidor, da RAM e do es
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><p>Processador</p></td>
+<td align="left"><p>Processor</p></td>
 <td align="left"><p>2,33 GHz</p></td>
 <td align="left"><p>2,33 GHz ou mais</p></td>
 </tr>
@@ -349,6 +355,10 @@ Você deve instalar o SQL Server com o agrupamento do **SQL \ _Latin1 \ _General
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left"><p>Microsoft SQL Server 2019</p></td>
+<td align="left"><p>Standard, Enterprise ou Datacenter</p></td>
+<td align="left"><p></p></td>
+<td align="left"><p>64 bits</p></td><br/><tr class="even">
 <td align="left"><p>Microsoft SQL Server 2017</p></td>
 <td align="left"><p>Standard, Enterprise ou Datacenter</p></td>
 <td align="left"><p></p></td>
@@ -377,7 +387,9 @@ Você deve instalar o SQL Server com o agrupamento do **SQL \ _Latin1 \ _General
 </table>
 
 **Observação**  
-Para dar suporte ao SQL 2016, você deve instalar a versão de manutenção do 2017 de março do MDOP https://www.microsoft.com/download/details.aspx?id=54967 e para dar suporte ao sql 2017, instale o lançamento de serviços de julho de 2018 para o MDOP https://www.microsoft.com/download/details.aspx?id=57157 . Em geral, mantenha-se atualizado sempre usando a atualização de manutenção mais recente, pois também inclui todos os recursos correções e novos.
+O MBAM tem um nível de compatibilidade máximo com suporte de 140. O nível de compatibilidade padrão para novos bancos de dados criados no SQL Server 2019 é 150 que precisará ser alterado para 140 ou inferior, usando o comando ALTER DATABASE, após a criação do banco de dados. Bancos de dados existentes migrados do SQL Server 2017 ou inferior permanecerão em seu nível de compatibilidade anterior e não precisarão ser alterados.
+
+Para dar suporte ao SQL 2016, você deve instalar a versão de manutenção do 2017 de março do MDOP https://www.microsoft.com/download/details.aspx?id=54967  e para dar suporte ao sql 2017, instale o lançamento de serviços de julho de 2018 para o MDOP https://www.microsoft.com/download/details.aspx?id=57157 . Em geral, mantenha-se atualizado sempre usando a atualização de manutenção mais recente, pois também inclui todos os recursos correções e novos.
 
 
 ### <a href="" id="bkmk-sql-stand-alone-ramreqs"></a>Requisitos de processador, RAM e espaço em disco do SQL Server – topologia autônoma
@@ -399,7 +411,7 @@ A tabela a seguir lista os requisitos de processador do servidor, RAM e espaço 
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><p>Processador</p></td>
+<td align="left"><p>Processor</p></td>
 <td align="left"><p>2,33 GHz</p></td>
 <td align="left"><p>2,33 GHz ou mais</p></td>
 </tr>
@@ -437,7 +449,7 @@ A tabela a seguir lista os requisitos do processador do servidor, da RAM e do es
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><p>Processador</p></td>
+<td align="left"><p>Processor</p></td>
 <td align="left"><p>2,33 GHz</p></td>
 <td align="left"><p>2,33 GHz ou mais</p></td>
 </tr>
