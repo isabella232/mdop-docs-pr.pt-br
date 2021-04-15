@@ -1,6 +1,6 @@
 ---
-title: Configurando o UE-V 2. x com objetos de política de grupo
-description: Configurando o UE-V 2. x com objetos de política de grupo
+title: Configurando o UE-V 2.x com objetos de política de grupo
+description: Configurando o UE-V 2.x com objetos de política de grupo
 author: dansimp
 ms.assetid: 2bb55834-26ee-4f19-9860-dfdf3c797143
 ms.reviewer: ''
@@ -11,19 +11,19 @@ ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.prod: w10
 ms.date: 06/16/2016
-ms.openlocfilehash: bdff63b948752b9bec83e77e275f1cb20a384463
-ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.openlocfilehash: b6c9636df36a53cbf65bf1904965f2809484b99c
+ms.sourcegitcommit: bdc377477a8cc9e973fbcdd67c2f07b882c5d61e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "10799469"
+ms.lasthandoff: 04/14/2021
+ms.locfileid: "11494056"
 ---
-# Configurando o UE-V 2. x com objetos de política de grupo
+# <a name="configuring-ue-v-2x-with-group-policy-objects"></a>Configurando o UE-V 2.x com objetos de política de grupo
 
 
-Algumas configurações da política de grupo do Microsoft User Experience Virtualization (UE-V) 2,0, 2,1 e 2,1 SP1 podem ser definidas para computadores e outras configurações de política de grupo podem ser definidas para os usuários. Para obter informações sobre como instalar os arquivos ADMX da política de grupo do UE-V, consulte [instalando os modelos ADMX da política de grupo UE-v 2](https://technet.microsoft.com/library/dn458891.aspx#admx).
+Algumas configurações da Política de Grupo da Experiência do Usuário da Microsoft (UE-V) 2.0, 2.1 e 2.1 SP1 podem ser definidas para computadores, e outras configurações de Política de Grupo podem ser definidas para os usuários. Para obter informações sobre como instalar arquivos ADMX da Política de Grupo UE-V, consulte [Installing the UE-V 2 Group Policy ADMX Templates](https://technet.microsoft.com/library/dn458891.aspx#admx).
 
-As configurações de política a seguir podem ser configuradas para UE-V.
+As configurações de política a seguir podem ser configuradas para o UE-V.
 
 **Configurações da Política de Grupo**
 
@@ -36,105 +36,118 @@ As configurações de política a seguir podem ser configuradas para UE-V.
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Nome da configuração da política de grupo</th>
+<th align="left">Nome da configuração da Política de Grupo</th>
 <th align="left">Target</th>
-<th align="left">Descrição da configuração da política de grupo</th>
+<th align="left">Descrição da configuração da Política de Grupo</th>
 <th align="left">Opções de configuração</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><p>Texto do link de ti de contato</p></td>
-<td align="left"><p>Computadores apenas</p></td>
-<td align="left"><p>Essa configuração de política de grupo especifica o texto do hiperlink de URL do contato no centro de configurações da empresa.</p></td>
-<td align="left"><p>Se você habilitar essa configuração de política de grupo, o centro de configurações da empresa exibirá o texto especificado no link para a URL do contato.</p></td>
+<td align="left"><p>Configurar o método Sync</p></td>
+<td align="left"><p>Computadores e usuários</p></td>
+<td align="left"><p>Usando essa configuração de Política de Grupo, você pode configurar se a UE-V (User Experience Virtualization) usa o recurso do provedor de sincronização. Essa configuração de política também permite que uma notificação apareça quando a importação de configurações do usuário é adiada.</p></td>
+<td align="left"><p>Habilita essa configuração para configurar o agente UE-V para não usar o provedor de sincronização ou para usar o mecanismo de sincronização externo.</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p>URL de contato</p></td>
-<td align="left"><p>Computadores apenas</p></td>
-<td align="left"><p>Essa configuração de política de grupo especifica a URL do link para o contato no centro de configurações da empresa.</p></td>
-<td align="left"><p>Se você habilitar essa configuração, o texto de contato do centro de configurações da empresa entrará em contato com a URL especificada. O link pode ser de qualquer protocolo padrão, como HTTP ou mailto.</p></td>
+<td align="left"><p>Entrar em contato com o texto do link de IT</p></td>
+<td align="left"><p>Somente computadores</p></td>
+<td align="left"><p>Esta configuração de Política de Grupo especifica o texto do hiperlink da URL de Contato na Central de Configurações da Empresa.</p></td>
+<td align="left"><p>Se você habilitar essa configuração de Política de Grupo, o Centro de Configurações da Empresa exibirá o texto especificado no link para a URL de TI de contato.</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Não usar o provedor de sincronização</p></td>
-<td align="left"><p>Computadores e usuários</p></td>
-<td align="left"><p>Usando essa configuração de política de grupo, você pode configurar se o UE-V usa o recurso do provedor de sincronização. Essa configuração de política também permite que você habilite a notificação para que ela seja exibida quando a importação das configurações do usuário for adiada.</p></td>
-<td align="left"><p>Habilite essa configuração para configurar o UE-V Agent para não usar o provedor de sincronização.</p></td>
+<td align="left"><p>Entrar em contato com a URL de IT</p></td>
+<td align="left"><p>Somente computadores</p></td>
+<td align="left"><p>Esta configuração de Política de Grupo especifica a URL do link Contato de IT na Central de Configurações da Empresa.</p></td>
+<td align="left"><p>Se você habilitar essa configuração, o Centro de Configurações da Empresa contatará links de texto de TI para a URL especificada. O link pode ser de qualquer protocolo padrão, como HTTP ou mailto.</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p>Notificação de primeira utilização</p></td>
-<td align="left"><p>Computadores apenas</p></td>
-<td align="left"><p>Essa configuração de política de grupo permite uma notificação na área de notificação que aparece quando a UE-V</p>
+<td align="left"><p>Notificação de Primeiro Uso</p></td>
+<td align="left"><p>Somente computadores</p></td>
+<td align="left"><p>Essa configuração de Política de Grupo habilita uma notificação na área de notificação que aparece quando o UE-V</p>
 <p>o agente é executado pela primeira vez.</p></td>
-<td align="left"><p>O padrão é habilitado.</p></td>
+<td align="left"><p>O padrão está habilitado.</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Configurações de roaming do Windows</p></td>
+<td align="left"><p>Ping do local de armazenamento de configurações antes da sincronização</p></td>
 <td align="left"><p>Computadores e usuários</p></td>
-<td align="left"><p>Essa configuração de política de grupo define a sincronização das configurações do Windows.</p></td>
-<td align="left"><p>Selecione as configurações do Windows que são sincronizadas entre computadores.</p>
-<p>Por padrão, os temas do Windows, as configurações da área de trabalho e as configurações de facilidade de acesso sincronizam as configurações entre computadores da mesma versão do sistema operacional.</p></td>
+<td align="left"><p>Essa configuração de política permite que a configuração do provedor de sincronização UE-V ping o caminho de armazenamento de configurações antes de tentar sincronizar as configurações para verificar a conexão.</p></td>
+<td align="left"><p>Habilitar ou desabilitar essa configuração de Política de Grupo.</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>Limite de aviso de tamanho do pacote de configurações</p></td>
 <td align="left"><p>Computadores e usuários</p></td>
-<td align="left"><p>Essa configuração de política de grupo permite que você configure o UE-V Agent para denunciar quando um tamanho de arquivo de pacote de configurações atingir um limite definido.</p></td>
-<td align="left"><p>Especifique o limite preferencial para o tamanho do pacote de configurações em kilobytes (KB).</p>
-<p>Por padrão, o UE-V Agent não tem um limite de tamanho de arquivo de pacote.</p></td>
+<td align="left"><p>Essa configuração de Política de Grupo permite que você configure o Agente UE-V para relatar quando um tamanho de arquivo de pacote de configurações atingir um limite definido.</p></td>
+<td align="left"><p>Especifique o limite preferencial para configurações de tamanhos de pacote em quilobytes (KB).</p>
+<p>Por padrão, o Agente UE-V não tem um limite de tamanho de arquivo de pacote.</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Caminho de armazenamento de configurações</p></td>
+<td align="left"><p>Configurações de caminho de armazenamento</p></td>
 <td align="left"><p>Computadores e usuários</p></td>
-<td align="left"><p>Essa configuração de política de grupo define onde as configurações do usuário devem ser armazenadas.</p></td>
-<td align="left"><p>Digite um caminho UNC (Convenção Universal de nomenclatura) e variáveis como \Server\SettingsShare%username%.</p></td>
+<td align="left"><p>Essa configuração de Política de Grupo configura onde as configurações do usuário devem ser armazenadas.</p></td>
+<td align="left"><p>Insira um caminho UNC (Convenção de Nomenização Universal) e variáveis como \Server\SettingsShare%username%.</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>Caminho do catálogo de modelos de configurações</p></td>
-<td align="left"><p>Computadores apenas</p></td>
-<td align="left"><p>Essa configuração de política de grupo define onde os modelos de localização de configurações personalizadas são armazenados. Essa configuração de política também define se o catálogo deve ser usado para substituir os modelos padrão da Microsoft que são instalados com o UE-V Agent.</p></td>
-<td align="left"><p>Insira um caminho UNC (Convenção Universal de nomenclatura) como \Server\TemplateShare ou um local de pasta no computador.</p>
+<td align="left"><p>Somente computadores</p></td>
+<td align="left"><p>Esta configuração de Política de Grupo configura onde os modelos de local de configurações personalizadas são armazenados. Essa configuração de política também configura se o catálogo deve ser usado para substituir os modelos padrão da Microsoft instalados pelo Agente UE-V.</p></td>
+<td align="left"><p>Insira um caminho UNC (Convenção de Nomenização Universal), como \Server\TemplateShare ou um local de pasta no computador.</p>
 <p>Marque a caixa de seleção para substituir os modelos padrão da Microsoft.</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Sincronizar configurações em conexões limitadas</p></td>
+<td align="left"><p>Configurações de sincronização em conexões com metros</p></td>
 <td align="left"><p>Computadores e usuários</p></td>
-<td align="left"><p>Essa configuração de política de grupo define se o UE-V sincroniza as configurações em conexões limitadas.</p></td>
-<td align="left"><p>Por padrão, o UE-V Agent não sincroniza as configurações em uma conexão limitada.</p></td>
+<td align="left"><p>Esta configuração de Política de Grupo define se o UE-V sincroniza configurações em conexões com metros.</p></td>
+<td align="left"><p>Por padrão, o Agente UE-V não sincroniza configurações em uma conexão com metros.</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p>Sincronizar configurações em conexões limitadas, mesmo durante o roaming</p></td>
+<td align="left"><p>Configurações de sincronização sobre conexões com medidor mesmo quando o roaming</p></td>
 <td align="left"><p>Computadores e usuários</p></td>
-<td align="left"><p>Essa configuração de política de grupo define se o UE-V sincronizará as configurações em conexões limitadas fora da rede do provedor primário, por exemplo, quando a conexão de dados estiver em modo de roaming.</p></td>
-<td align="left"><p>Por padrão, o UE-V não sincroniza as configurações em uma conexão limitada quando está em modo de roaming.</p></td>
+<td align="left"><p>Esta configuração de Política de Grupo define se o UE-V sincroniza configurações em conexões com metros fora da rede do provedor 1, por exemplo, quando a conexão de dados está no modo roaming.</p></td>
+<td align="left"><p>Por padrão, o UE-V não sincroniza configurações em uma conexão com metros quando está no modo roaming.</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Tempo limite de sincronização</p></td>
+<td align="left"><p>Tempo de tempo de sincronização</p></td>
 <td align="left"><p>Computadores e usuários</p></td>
-<td align="left"><p>Essa configuração de política de grupo configura o número de milissegundos que o computador aguarda antes de um tempo limite quando ele recupera as configurações de usuário do local de configurações remotas. Se o local do armazenamento remoto não estiver disponível e o usuário não usar o provedor de sincronização, o início do aplicativo será atrasado por esse número de milissegundos.</p></td>
-<td align="left"><p>Especifique o tempo limite de sincronização preferencial em milissegundos. O valor padrão é 2000 milissegundos.</p></td>
+<td align="left"><p>Esta configuração de Política de Grupo configura o número de milissegundos que o computador aguarda antes de um tempo de espera quando recupera as configurações do usuário do local de configurações remotas. Se o local de armazenamento remoto não estiver disponível e o usuário não usar o provedor de sincronização, o início do aplicativo será adiado por esse número de milissegundos.</p></td>
+<td align="left"><p>Especifique o tempo de tempo de sincronização preferencial em milissegundos. O valor padrão é 2000 milissegundos.</p></td>
 </tr>
 <tr class="even">
+<td align="left"><p>Sincronizar configurações do Windows </p></td>
+<td align="left"><p>Computadores e usuários</p></td>
+<td align="left"><p>Essa configuração de Política de Grupo configura a sincronização das configurações do Windows.</p></td>
+<td align="left"><p>Selecione quais configurações do Windows sincronizam entre computadores.</p>
+<p>Por padrão, temas do Windows, configurações de área de trabalho e configurações de Facilidade de Acesso sincronizam configurações entre computadores da mesma versão do sistema operacional.</p></td>
+</tr>
+<tr class="odd">
 <td align="left"><p>Ícone de bandeja</p></td>
-<td align="left"><p>Computadores apenas</p></td>
-<td align="left"><p>Essa configuração de política de grupo habilita o ícone de bandeja do User Experience Virtualization (UE-V).</p></td>
-<td align="left"><p>O padrão é habilitado.</p></td>
+<td align="left"><p>Somente computadores</p></td>
+<td align="left"><p>Essa configuração de Política de Grupo habilita o ícone da bandeja UE-V.</p></td>
+<td align="left"><p>O padrão está habilitado.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Usar a Virtualização da Experiência do Usuário (UE-V)</p></td>
+<td align="left"><p>Computadores e usuários</p></td>
+<td align="left"><p>Essa configuração de Política de Grupo permite habilitar ou desabilitar o UE-V.</p></td>
+<td align="left"><p>Habilitar ou desabilitar essa configuração de Política de Grupo.</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Usar a User Experience Virtualization (UE-V)</p></td>
+<td align="left"><p>Configuração VDI</p></td>
 <td align="left"><p>Computadores e usuários</p></td>
-<td align="left"><p>Essa configuração de política de grupo permite habilitar ou desabilitar a virtualização da experiência do usuário (UE-V).</p></td>
-<td align="left"><p>Habilitar ou desabilitar essa configuração de política de grupo.</p></td>
+<td align="left"><p>Essa configuração de política configura a sincronização de informações de rebaixamento do UE-V para computadores em execução em um ambiente VDI em pool. Se essa política estiver habilitada, o estado de rebaixamento UE-V será copiado para o local de armazenamento de configurações no logout e restaurado no logon.</p></td>
+<td align="left"><p>Habilitar ou desabilitar essa configuração de Política de Grupo.</p></td>
 </tr>
 </tbody>
 </table>
 
  
 
-**Observação**  Além disso, as configurações de política de grupo estão disponíveis para muitos aplicativos da área de trabalho e aplicativos do Windows. Você pode usar essas configurações para habilitar ou desabilitar a sincronização de configurações para aplicativos específicos.
+**Observação**  
+Além disso, as configurações da Política de Grupo estão disponíveis para muitos aplicativos da área de trabalho e aplicativos do Windows. Você pode usar essas configurações para habilitar ou desabilitar a sincronização de configurações para aplicativos específicos.
 
  
 
-**Configurações da política de grupo do aplicativo Windows**
+**Configurações da Política de Grupo de Aplicativos do Windows**
 
 <table>
 <colgroup>
@@ -145,9 +158,9 @@ As configurações de política a seguir podem ser configuradas para UE-V.
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Nome da configuração da política de grupo</th>
+<th align="left">Nome da configuração da Política de Grupo</th>
 <th align="left">Target</th>
-<th align="left">Descrição da configuração da política de grupo</th>
+<th align="left">Descrição da configuração da Política de Grupo</th>
 <th align="left">Opções de configuração</th>
 </tr>
 </thead>
@@ -155,66 +168,61 @@ As configurações de política a seguir podem ser configuradas para UE-V.
 <tr class="odd">
 <td align="left"><p>Não sincronizar aplicativos do Windows</p></td>
 <td align="left"><p>Computadores e usuários</p></td>
-<td align="left"><p>Essa configuração de política de grupo define se o UE-V Agent sincroniza as configurações para aplicativos do Windows.</p></td>
+<td align="left"><p>Esta configuração de Política de Grupo define se o Agente UE-V sincroniza configurações para aplicativos do Windows.</p></td>
 <td align="left"><p>O padrão é sincronizar aplicativos do Windows.</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>Lista de aplicativos do Windows</p></td>
-<td align="left"><p>Computador e usuário</p></td>
-<td align="left"><p>Esta configuração lista os nomes dos pacotes familiares dos aplicativos e Estados do Windows expressamente se a UE-V sincroniza as configurações do aplicativo.</p></td>
-<td align="left"><p>Você pode usar essa configuração para especificar que as configurações de um aplicativo nunca sejam sincronizadas pelo UE-V, mesmo se as configurações de todos os outros aplicativos do Windows estiverem sincronizadas.</p></td>
+<td align="left"><p>Computador e Usuário</p></td>
+<td align="left"><p>Essa configuração lista os nomes de pacote da família dos aplicativos e estados do Windows expressamente se o UE-V sincroniza as configurações desse aplicativo.</p></td>
+<td align="left"><p>Você pode usar essa configuração para especificar que as configurações de um aplicativo nunca são sincronizadas pelo UE-V, mesmo que as configurações de todos os outros aplicativos do Windows sejam sincronizadas.</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>Sincronizar aplicativos do Windows não listados</p></td>
-<td align="left"><p>Computador e usuário</p></td>
-<td align="left"><p>Essa configuração de política de grupo define o comportamento de sincronização de configurações padrão do UE-V Agent para aplicativos do Windows que não estão explicitamente listados na lista de aplicativos do Windows.</p></td>
-<td align="left"><p>Por padrão, o UE-V Agent sincroniza apenas as configurações dos aplicativos do Windows que estão incluídos na lista de aplicativos do Windows.</p></td>
+<td align="left"><p>Computador e Usuário</p></td>
+<td align="left"><p>Esta configuração de Política de Grupo define o comportamento de sincronização de configurações padrão do Agente UE-V para aplicativos Windows que não estão explicitamente listados na lista de aplicativos do Windows.</p></td>
+<td align="left"><p>Por padrão, o Agente UE-V sincroniza apenas as configurações desses aplicativos do Windows incluídos na lista de aplicativos do Windows.</p></td>
 </tr>
 </tbody>
 </table>
 
  
 
-Para obter mais informações sobre a sincronização de aplicativos do Windows, consulte [lista de aplicativos do Windows](https://technet.microsoft.com/library/dn458925.aspx#win8applist).
+Para obter mais informações sobre como sincronizar aplicativos do Windows, consulte [Windows App List](https://technet.microsoft.com/library/dn458925.aspx#win8applist).
 
-**Para definir configurações de política de grupo direcionadas a computador**
+**Para configurar configurações de Política de Grupo direcionadas ao computador**
 
-1.  Use o GPMC (console de gerenciamento de política de grupo) ou o gerenciamento avançado de política de grupo (AGPM) no computador que atua como um controlador de domínio para gerenciar as configurações de política de grupo para computadores UE-V. Navegue até **configuração do computador**, **selecione políticas**, selecione **modelos administrativos**, clique em **componentes do Windows**e selecione **virtualização da experiência do usuário da Microsoft**.
+1.  Use o Console de Gerenciamento de Política de Grupo (GPMC) ou o AgPM (Gerenciamento Avançado de Política de Grupo) no computador que atua como controlador de domínio para gerenciar configurações de Política de Grupo para computadores UE-V. Navegue **até Configuração do computador,** selecione **Políticas,** selecione **Modelos Administrativos,** clique em **Componentes**do Windows e selecione **Virtualização da Experiência do Usuário da Microsoft.**
 
-2.  Selecione a configuração de política de grupo a ser editada.
+2.  Selecione a configuração de Política de Grupo a ser editada.
 
-**Para definir configurações de política de grupo direcionadas ao usuário**
+**Para configurar configurações de Política de Grupo direcionadas ao usuário**
 
-1.  Use o GPMC (console de gerenciamento de política de grupo) ou a ferramenta de gerenciamento avançado de política de grupo (AGPM) no Microsoft Desktop Optimization Pack (MDOP) no computador do controlador de domínio para gerenciar as configurações de política de grupo para UE-V. Navegue até **configuração do usuário**, **selecione políticas**, selecione **modelos administrativos**, clique em **componentes do Windows**e selecione **virtualização da experiência do usuário da Microsoft**.
+1.  Use o Console de Gerenciamento de Política de Grupo (GPMC) ou a ferramenta AgPM (Gerenciamento avançado de Política de Grupo) no Microsoft Desktop Optimization Pack (MDOP) no computador controlador de domínio para gerenciar as configurações de Política de Grupo para UE-V. Navegue **até Configuração do usuário,** selecione **Políticas,** selecione **Modelos Administrativos,** clique em **Componentes**do Windows e selecione **Virtualização da Experiência**do Usuário da Microsoft.
 
-2.  Selecione a configuração de política de grupo editada.
+2.  Selecione a configuração de Política de Grupo editada.
 
-O UE-V Agent usa a seguinte ordem de precedência para determinar a sincronização.
+O Agente UE-V usa a seguinte ordem de precedência para determinar a sincronização.
 
-**Ordem de precedência para configurações de UE-V**
+**Ordem de precedência para configurações do UE-V**
 
-1.  Configurações direcionadas ao usuário que são gerenciadas por configurações de política de grupo-essas configurações são armazenadas na chave do registro por política de grupo em `HKEY_CURRENT_USER\Software\Policies\Microsoft\Uev\Agent\Configuration` .
+1.  Configurações direcionadas ao usuário gerenciadas pelas configurações da Política de Grupo - Essas configurações são armazenadas na chave do Registro pela Política de Grupo em `HKEY_CURRENT_USER\Software\Policies\Microsoft\Uev\Agent\Configuration` .
 
-2.  Configurações direcionadas por computador que são gerenciadas por configurações de política de grupo-essas configurações são armazenadas na chave do registro por política de grupo em `HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Uev\Agent\Configuration` .
+2.  Configurações direcionadas ao computador gerenciadas pelas configurações da Política de Grupo - Essas configurações são armazenadas na chave do Registro pela Política de Grupo em `HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Uev\Agent\Configuration` .
 
-3.  As definições de configuração que são definidas pelo usuário atual usando o Windows PowerShell ou WMI (Instrumentação de gerenciamento do Windows)-essas configurações são armazenadas pelo UE-V Agent sob este local de registro: `HKEY_CURRENT_USER\Software\Microsoft\Uev\Agent\Configuration` .
+3.  Configurações definidas pelo usuário atual usando Windows PowerShell ou Instrumentação de Gerenciamento do Windows (WMI) - Essas configurações são armazenadas pelo Agente UE-V neste local do Registro: `HKEY_CURRENT_USER\Software\Microsoft\Uev\Agent\Configuration` .
 
-4.  Configurações definidas para o computador usando o Windows PowerShell ou o WMI. Essas configurações são armazenadas pelo UE-V Agent sob este local de registro: `HKEY_LOCAL_MACHINE\Software\Microsoft\Uev\Agent\Configuration` .
+4.  Configurações definidas para o computador usando Windows PowerShell ou WMI. Essas configurações são armazenadas pelo Agente UE-V neste local do Registro: `HKEY_LOCAL_MACHINE\Software\Microsoft\Uev\Agent\Configuration` .
 
-    **Tem uma sugestão para UE-V**? Adicione ou vote em sugestões [aqui](http://uev.uservoice.com/forums/280428-microsoft-user-experience-virtualization). **Tem um problema de UE-V**? Use o [Fórum do TechNet para UE-V](https://social.technet.microsoft.com/Forums/home?forum=mdopuev).
+    **Tem uma sugestão para UE-V?** Adicione ou vote em sugestões [aqui](http://uev.uservoice.com/forums/280428-microsoft-user-experience-virtualization). **Tem um problema UE-V?** Use o [Fórum do TechNet UE-V.](https://social.technet.microsoft.com/Forums/home?forum=mdopuev)
 
-## Tópicos relacionados
+## <a name="related-topics"></a>Tópicos relacionados
 
 
-[Administração do UE-V 2. x](administering-ue-v-2x-new-uevv2.md)
+[Administrando o UE-V 2.x](administering-ue-v-2x-new-uevv2.md)
 
 [Gerenciar as configurações da UE-V 2.x](manage-configurations-for-ue-v-2x-new-uevv2.md)
 
  
 
  
-
-
-
-
-
