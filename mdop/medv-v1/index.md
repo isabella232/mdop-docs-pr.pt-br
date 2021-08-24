@@ -1,6 +1,6 @@
 ---
-title: Guia de planejamento, implantação e operações do Microsoft Enterprise Desktop Virtualization
-description: Guia de planejamento, implantação e operações do Microsoft Enterprise Desktop Virtualization
+title: Microsoft Enterprise Desktop Virtualization Guia de Planejamento, Implantação e Operações
+description: Microsoft Enterprise Desktop Virtualization Guia de Planejamento, Implantação e Operações
 author: dansimp
 ms.assetid: 7bc3e120-df77-4f4c-bc8e-7aaa4c2a6525
 ms.pagetype: mdop, virtualization
@@ -8,23 +8,23 @@ ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.prod: w10
 ms.date: 06/16/2016
-ms.openlocfilehash: 2a5f3a617d2c7b23b530474893a68a60c2d5b189
-ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.openlocfilehash: 2cbdb429349cc337d64912bd846173e6f61ae12d
+ms.sourcegitcommit: 3e0500abde44d6a09c7ac8e3caf5e25929b490a4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "10795376"
+ms.lasthandoff: 08/23/2021
+ms.locfileid: "11910786"
 ---
-# Guia de planejamento, implantação e operações do Microsoft Enterprise Desktop Virtualization
+# <a name="microsoft-enterprise-desktop-virtualization-planning-deployment-and-operations-guide"></a>Microsoft Enterprise Desktop Virtualization Guia de Planejamento, Implantação e Operações
 
 
-![virtualização de área de trabalho do Microsoft Enterprise](images/medv.gif)
+![virtualização da área de trabalho da microsoft enterprise.](images/medv.gif)
 
-A virtualização de área de trabalho do Microsoft Enterprise (MED-V) usa o Microsoft Virtual PC para fornecer uma solução empresarial para virtualização de área de trabalho. Com a MED-V, você pode facilmente criar, fornecer e gerenciar imagens de computadores virtuais corporativos em qualquer área de trabalho baseada no Windows®.
+Microsoft Enterprise Desktop Virtualization (MED-V) usa o Microsoft Virtual PC para fornecer uma solução corporativa para virtualização de área de trabalho. Com a MED-V, você pode facilmente criar, fornecer e gerenciar imagens de computadores virtuais corporativos em qualquer área de trabalho baseada no Windows®.
 
-O MED-V é um componente integrante do Microsoft Desktop Optimization Pack, uma solução dinâmica disponível para clientes do Software Assurance, o que ajuda a reduzir os custos de implantação de aplicativos, permite a entrega de aplicativos como serviços e ajuda a gerenciar e controlar melhor os ambientes de desktop corporativos.
+MED-V é um componente integral do Microsoft Desktop Optimization Pack, uma solução dinâmica disponível para clientes do Software Assurance, que ajuda a reduzir os custos de implantação de aplicativos, permite a entrega de aplicativos como serviços e ajuda a gerenciar e controlar melhor os ambientes de área de trabalho empresariais.
 
-## Nesta seção
+## <a name="in-this-section"></a>Nesta seção
 
 
 Os tópicos a seguir são abordados neste guia:
@@ -43,9 +43,9 @@ Os tópicos a seguir são abordados neste guia:
 
 [Referência técnica](technical-referencemedv-10-sp1.md)
 
- 
+ 
 
- 
+ 
 
 
 

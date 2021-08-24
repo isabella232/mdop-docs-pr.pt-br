@@ -11,26 +11,27 @@ ms.mktglfcycl: manage
 ms.sitesec: library
 ms.prod: w10
 ms.date: 06/16/2016
-ms.openlocfilehash: 654de38918102a41395efe37dc593ce8f49113e4
-ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.openlocfilehash: 9f23a0eba923608fb6e25e44ee2843f3cde4c2dc
+ms.sourcegitcommit: 3e0500abde44d6a09c7ac8e3caf5e25929b490a4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "10799618"
+ms.lasthandoff: 08/23/2021
+ms.locfileid: "11910806"
 ---
-# Introdução – Como usar o MBAM com o Configuration Manager
+# <a name="getting-started---using-mbam-with-configuration-manager"></a>Introdução – Como usar o MBAM com o Configuration Manager
 
 
-Ao instalar o Microsoft BitLocker Administration and Monitoring (MBAM), você pode escolher uma topologia que integre o MBAM com o Configuration Manager 2007 ou SystemCenter2012 ConfigurationManager. Para obter uma lista das versões compatíveis do Configuration Manager que o MBAM oferece suporte, consulte [planejando implantar o MBAM com o Configuration Manager](planning-to-deploy-mbam-with-configuration-manager-2.md). Na topologia integrada, os recursos de relatórios e conformidade de hardware são removidos do MBAM e são acessados do Configuration Manager.
+Ao instalar o Microsoft BitLocker Administration and Monitoring (MBAM), você pode escolher uma topologia que integre o MBAM ao Configuration Manager 2007 ou System Center 2012 Configuration Manager. Para ver uma lista das versões com suporte do Configuration Manager compatíveis com o MBAM, consulte [Planning to Deploy MBAM with Configuration Manager](planning-to-deploy-mbam-with-configuration-manager-2.md). Na topologia integrada, os recursos de conformidade e relatório de hardware são removidos do MBAM e acessados do Configuration Manager.
 
-**Importante**  Não há suporte para o Windows to go ao instalar a topologia integrada do MBAM com o Configuration Manager 2007.
+**Importante**  
+Windows To Go não é suportado quando você instala a topologia integrada do MBAM com o Configuration Manager 2007.
 
  
 
-## Usando o MBAM com o Configuration Manager
+## <a name="using-mbam-with-configuration-manager"></a>Usando o MBAM com o Configuration Manager
 
 
-A integração do MBAM é baseada em um novo pacote de configuração que instala os três itens a seguir no Configuration Manager 2007 ou SystemCenter2012 ConfigurationManager, que estão descritos em detalhes nas seguintes seções:
+A integração do MBAM baseia-se em um novo Configuration Pack que instala os três itens a seguir no Configuration Manager 2007 ou no System Center 2012 Configuration Manager, que são descritos em detalhes nas seguintes seções:
 
 Dados de configuração que consistem em itens de configuração e uma linha de base de configuração
 
@@ -38,64 +39,64 @@ Coleção
 
 Relatórios
 
-### Dados de configuração
+### <a name="configuration-data"></a>Dados de Configuração
 
-Os dados de configuração instalam uma linha de base de configuração, chamada "proteção BitLocker", que contém dois itens de configuração: "proteção de unidade de sistema operacional BitLocker" e "proteção de unidades de dados fixas BitLocker". A linha de base de configuração é implantada na coleção, que também é criada quando o MBAM está instalado. Os dois itens de configuração fornecem a base para avaliar o status de conformidade dos computadores cliente. Essas informações são capturadas, armazenadas e avaliadas no Configuration Manager. Os itens de configuração se baseiam nos requisitos de conformidade para unidades do sistema operacional (OSDs) e unidades de dados fixos (FDDs). Os detalhes necessários para os computadores implantados são coletados para que a conformidade desses tipos de unidade possa ser avaliada. Por padrão, a linha de base de configuração avalia o status de conformidade a cada 12 horas e envia os dados de conformidade para o Configuration Manager.
+Os dados de configuração instalam uma linha de base de configuração, chamada "Proteção do BitLocker", que contém dois itens de configuração: "Proteção de Unidade de Sistema Operacional BitLocker" e "Proteção de Unidades de Dados Fixas do BitLocker". A linha de base de configuração é implantada na coleção, que também é criada quando o MBAM é instalado. Os dois itens de configuração fornecem a base para avaliar o status de conformidade dos computadores cliente. Essas informações são capturadas, armazenadas e avaliadas no Configuration Manager. Os itens de configuração são baseados nos requisitos de conformidade para unidades do sistema operacional (OSDs) e unidades de dados fixas (FDDs). Os detalhes necessários para os computadores implantados são coletados para que a conformidade para esses tipos de unidade possa ser avaliada. Por padrão, a linha de base de configuração avalia o status de conformidade a cada 12 horas e envia os dados de conformidade para o Configuration Manager.
 
-### Coleção
+### <a name="collection"></a>Coleção
 
-MBAM cria uma coleção chamada MBAM computadores com suporte. A linha de base de configuração é direcionada para computadores cliente que estão nesta coleção. Essa é uma coleção dinâmica que, por padrão, é executada a cada 12 horas e avalia a associação. A associação se baseia em três critérios:
+O MBAM cria uma coleção chamada MbaM Supported Computers. A linha de base de configuração é direcionada a computadores cliente que estão nessa coleção. Esta é uma coleção dinâmica que, por padrão, é executado a cada 12 horas e avalia a associação. A associação se baseia em três critérios:
 
--   É uma versão com suporte do sistema operacional Windows. Atualmente, o MBAM oferece suporte somente ao Windows 7 Enterprise e ao Windows 7 Ultimate, ao Windows 8 Enterprise e ao Windows to go, quando o Windows to go estiver em execução no Windows 8 Enterprise.
+-   É uma versão com suporte do sistema operacional Windows sistema operacional. Atualmente, o MBAM dá suporte Windows 7 Enterprise e Windows 7 Ultimate, Windows 8 Enterprise e Windows Para Ir, quando o Windows To Go está em execução no Windows 8 Enterprise.
 
 -   É um computador físico. Não há suporte para máquinas virtuais.
 
--   O Trusted Platform Module (TPM) está disponível. Uma versão compatível do TPM 1,2 ou posterior é necessária para o Windows 7. O Windows 8 e o Windows to go não exigem um TPM.
+-   O Trusted Platform Module (TPM) está disponível. Uma versão compatível do TPM 1.2 ou posterior é necessária para Windows 7. Windows 8 e Windows Para Ir não exigem um TPM.
 
-A coleção é avaliada em relação a todos os computadores e cria o subconjunto de computadores compatíveis que fornece a base para avaliação de conformidade e relatórios para a integração com o MBAM.
+A coleção é avaliada em relação a todos os computadores e cria o subconjunto de computadores compatíveis que fornece a base para avaliação e relatórios de conformidade para a integração com o MBAM.
 
-### Relatórios
+### <a name="reports"></a>Relatórios
 
-Há quatro relatórios que você pode usar para ver a conformidade. São eles:
+Há quatro relatórios que você pode usar para exibir a conformidade. São eles:
 
--   **Painel de conformidade do BitLocker Enterprise** – fornece aos administradores de ti três exibições de informações em um único relatório: distribuição de status de conformidade, não compatível – distribuição de erros e distribuição de status de conformidade por tipo de unidade. As opções de busca detalhada no relatório permitem que os administradores de ti cliquem nos dados e visualizem uma lista de computadores que correspondem ao estado que você selecionar.
+-   **BitLocker Enterprise Painel** de Conformidade – fornece aos administradores de IT três exibições diferentes de informações sobre um único relatório: Distribuição de Status de Conformidade, Não Conformidade – Distribuição de Erros e Distribuição de Status de Conformidade por Tipo de Unidade. Opções de detalhamento no relatório permitem que os administradores de TI cliquem nos dados e exibir uma lista de computadores que corresponderem ao estado selecionado.
 
--   **Detalhes de conformidade corporativa do BitLocker** – permite que os administradores de ti exibam informações sobre o status de conformidade de criptografia do BitLocker da empresa e inclui o status de conformidade de cada computador. As opções de busca detalhada no relatório permitem que os administradores de ti cliquem nos dados e visualizem uma lista de computadores que correspondem ao estado que você selecionar.
+-   **BitLocker Enterprise Detalhes** de Conformidade – permite aos administradores de IT exibir informações sobre o status de conformidade de criptografia do BitLocker da empresa e inclui o status de conformidade para cada computador. Opções de detalhamento no relatório permitem que os administradores de TI cliquem nos dados e exibir uma lista de computadores que corresponderem ao estado selecionado.
 
--   **Conformidade com o computador BitLocker** – permite que os administradores de ti visualizem um computador individual e determine por que ele foi reportado com um determinado status de conformidade ou não compatível. O relatório também exibe o estado de criptografia das unidades de sistema operacional (OSD) e unidades de dados fixos (FDDs).
+-   Conformidade com o Computador Do **BitLocker** – permite que os administradores de IT exibiam um computador individual e determinem por que ele foi relatado com um determinado status de compatível ou não compatível. O relatório também exibe o estado de criptografia das unidades do sistema operacional (OSD) e unidades de dados fixas (FDDs).
 
--   **Resumo de conformidade com o BitLocker Enterprise** – permite que os administradores de ti exibam o status da conformidade da empresa com a política MBAM. O estado de cada computador é avaliado, e o relatório mostra um resumo da conformidade de todos os computadores na empresa em relação à política. As opções de busca detalhada no relatório permitem que os administradores de ti cliquem nos dados e visualizem uma lista de computadores que correspondem ao estado que você selecionar.
+-   **BitLocker Enterprise Resumo de Conformidade** – permite que os administradores de IT visualizam o status da conformidade da empresa com a política do MBAM. O estado de cada computador é avaliado e o relatório mostra um resumo da conformidade de todos os computadores na empresa em relação à política. Opções de detalhamento no relatório permitem que os administradores de TI cliquem nos dados e exibir uma lista de computadores que corresponderem ao estado selecionado.
 
-## Arquitetura de alto nível do MBAM com o Configuration Manager
+## <a name="high-level-architecture-of-mbam-with-configuration-manager"></a>High-Level arquitetura do MBAM com o Configuration Manager
 
 
-A imagem a seguir mostra a arquitetura MBAM com a topologia do Configuration Manager. Essa configuração oferece suporte a até 200.000 clientes do MBAM em um ambiente de produção.
+A imagem a seguir mostra a arquitetura do MBAM com a topologia do Configuration Manager. Essa configuração dá suporte a até 200.000 clientes MBAM em um ambiente de produção.
 
-![arquitetura MBAM com o Configuration Manager](images/mbam2-cmserver.gif)
+![arquitetura do mbam com o gerenciador de configuração.](images/mbam2-cmserver.gif)
 
-A seguir está uma descrição dos servidores, bancos de dados e recursos dessa arquitetura. Os recursos do servidor e os bancos de dados na imagem da arquitetura estão listados no computador ou servidor onde recomendamos que você os instale.
+Uma descrição dos servidores, bancos de dados e recursos dessa arquitetura é a seguir. Os recursos e bancos de dados do servidor na imagem da arquitetura estão listados no computador ou servidor em que recomendamos instalá-los.
 
--   **Servidor de banco de dados** – o **banco de dados de recuperação**, o banco de dados de **auditoria**e os **relatórios de auditoria** são instalados em um servidor Windows e na instância SqlServer com suporte O banco de dados de recuperação armazena dados de recuperação coletados de computadores cliente do MBAM. O banco de dados de auditoria armazena dados de atividades de auditoria coletados de computadores cliente que acessam dados de recuperação. Os relatórios de auditoria fornecem dados sobre o status de conformidade dos computadores cliente na sua empresa.
+-   **Servidor de Banco** de Dados – **** **O**Banco de Dados de Recuperação, **** o Banco de Dados de Auditoria e os Relatórios de Auditoria são instalados em um servidor Windows e têm suporte SQL Server instância. O banco de dados de recuperação armazena dados de recuperação coletados de computadores clientes do MBAM. O Banco de Dados de Auditoria armazena dados de atividade de auditoria coletados de computadores cliente que acessaram dados de recuperação. Os Relatórios de Auditoria fornecem dados sobre o status de conformidade dos computadores cliente em sua empresa.
 
--   **Servidor de site primário do Configuration Manager** – o servidor do Configuration Manager contém a instalação do servidor do MBAM com a topologia de integração do System Center Configuration Manager, que deve ser instalada em um servidor de site primário do Configuration Manager. O servidor do Configuration Manager coleta as informações do inventário de hardware dos computadores cliente e é usada para denunciar a compatibilidade do BitLocker em computadores cliente. Quando você executa a instalação do servidor de configuração do MBAM, um conjunto e os dados de configuração são instalados no servidor de site primário do Configuration Manager.
+-   **Servidor** de Site Principal do Gerenciador de Configurações – o Servidor do Configuration Manager contém a instalação do servidor MBAM com a topologia de integração System Center Configuration Manager, que deve ser instalada em um servidor de site principal do Configuration Manager. O Servidor do Configuration Manager coleta as informações de inventário de hardware de computadores cliente e é usado para relatar a conformidade do BitLocker de computadores cliente. Ao executar a instalação do servidor de Instalação do MBAM, uma coleção e os dados de configuração são instalados no Servidor de Site Principal do Configuration Manager.
 
--   **Servidor de administração e monitoramento** – o **servidor de administração e monitoramento** está instalado em um servidor Windows e consiste no site de administração e monitoramento e nos serviços Web de monitoramento. O site de administração e monitoramento é usado para auditar a atividade e para acessar dados de recuperação (por exemplo, as chaves de recuperação do BitLocker). O **portal de autoatendimento** também é instalado no servidor de administração e monitoramento. O portal permite que os usuários finais em computadores cliente façam logon independentemente em um site para obter uma chave de recuperação se eles perdem ou esquecem a senha do BitLocker. Os relatórios de auditoria também são instalados no servidor de administração e monitoramento.
+-   **Servidor de** Administração e **** Monitoramento - O Servidor de Administração e Monitoramento está instalado em um servidor Windows e consiste no site de Administração e Monitoramento e nos serviços Web de monitoramento. O site administração e monitoramento é usado para auditar atividades e acessar dados de recuperação (por exemplo, chaves de recuperação do BitLocker). O **Portal de Autoatendido** também está instalado no Servidor de Administração e Monitoramento. O Portal permite que os usuários finais em computadores clientes faça logoff independentemente em um site para obter uma chave de recuperação se perderem ou esquecerem a senha do BitLocker. Os relatórios de auditoria também são instalados no Servidor de Administração e Monitoramento.
 
--   **Estação de trabalho de gerenciamento** – o **modelo de política** consiste em objetos de política de grupo que definem as configurações de implementação MBAM para a criptografia de unidade de disco Você pode instalar o modelo de política em qualquer servidor ou estação de trabalho, mas ele é instalado normalmente em uma estação de trabalho de gerenciamento que é um computador cliente ou servidor com suporte. A estação de trabalho não precisa ser um computador dedicado.
+-   **Estação de Trabalho de** Gerenciamento - O Modelo **de** Política consiste em Objetos de Política de Grupo que definem as configurações de implementação do MBAM para criptografia de unidade BitLocker. Você pode instalar o modelo de Política em qualquer servidor ou estação de trabalho, mas ele é normalmente instalado em uma estação de trabalho de gerenciamento que é um servidor Windows ou computador cliente com suporte. A estação de trabalho não precisa ser um computador dedicado.
 
--   **Cliente MBAM** e computador **cliente do Configuration Manager**
+-   **Computador cliente do MBAM Client** and **Configuration Manager**
 
-    -   O **cliente MBAM** executa as seguintes tarefas:
+    -   O **Cliente MBAM** executa as seguintes tarefas:
 
-        -   Usa objetos de política de grupo para impor a criptografia BitLocker dos computadores cliente da empresa.
+        -   Usa Objetos de Política de Grupo para impor a criptografia BitLocker de computadores cliente na empresa.
 
-        -   Coleta a chave de recuperação dos três tipos de unidade de dados BitLocker: unidades do sistema operacional, unidades de dados fixas e unidades de dados removíveis (USB).
+        -   Coleta a chave de recuperação para os três tipos de unidade de dados do BitLocker: unidades do sistema operacional, unidades de dados fixas e unidades USB (dados removíveis).
 
-        -   Coleta informações de recuperação e informações do computador dos computadores cliente.
+        -   Coleta informações de recuperação e informações do computador sobre os computadores cliente.
 
-    -   **Cliente do Configuration Manager** – o cliente do Configuration Manager permite que o Configuration Manager colete dados de compatibilidade de hardware sobre os computadores cliente e permite que o Configuration Manager informe as informações de conformidade.
+    -   **Cliente do Gerenciador** de Configurações – o cliente do Configuration Manager permite que o Gerenciador de Configurações colete dados de compatibilidade de hardware sobre os computadores clientes e permite que o Gerenciador de Configurações informe informações de conformidade.
 
-## Tópicos relacionados
+## <a name="related-topics"></a>Tópicos relacionados
 
 
 [Usando o MBAM com o Configuration Manager](using-mbam-with-configuration-manager.md)

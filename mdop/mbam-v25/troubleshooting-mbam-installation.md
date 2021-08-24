@@ -1,6 +1,6 @@
 ---
 title: Solução de problemas de instalação do MBAM 2.5
-description: Apresentando como solucionar problemas de instalação do MBAM 2,5.
+description: Apresentando como solucionar problemas de instalação do MBAM 2.5.
 author: Deland-Han
 ms.reviewer: dcscontentpm
 manager: dansimp
@@ -8,94 +8,94 @@ ms.author: delhan
 ms.sitesec: library
 ms.prod: w10
 ms.date: 09/16/2019
-ms.openlocfilehash: ed56a87496e09601c44028b7f948eda39143e8c0
-ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.openlocfilehash: 6ea152792801c630fa365f37d1668d1a4d84b3a5
+ms.sourcegitcommit: 3e0500abde44d6a09c7ac8e3caf5e25929b490a4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "10796106"
+ms.lasthandoff: 08/23/2021
+ms.locfileid: "11910626"
 ---
-# Solução de problemas de instalação do MBAM 2.5
+# <a name="troubleshooting-mbam-25-installation-problems"></a>Solução de problemas de instalação do MBAM 2.5
 
-Este artigo apresenta como solucionar problemas de instalação do Microsoft BitLocker Administration and Monitoring (MBAM) 2,5 em uma configuração autônoma.
+Este artigo apresenta como solucionar problemas de instalação do Microsoft BitLocker Administration and Monitoring (MBAM) 2.5 em uma configuração autônoma.
 
-## Fazendo referência a arquivos de log do MBAM para solução de problemas
+## <a name="referring-mbam-log-files-for-troubleshooting"></a>Referindo-se a arquivos de log do MBAM para solução de problemas
 
-O MBAM inclui log para instalação do servidor, instalação do cliente e eventos. Este registro em log deve ser consultado para solução de problemas. 
+O MBAM inclui o registro em log para instalação do servidor, instalação do cliente e eventos. Esse log deve ser chamado para solução de problemas. 
  
-### Arquivos de log de instalação do MBAM Server
+### <a name="mbam-server-installation-log-files"></a>Arquivos de log de instalação do servidor MBAM
 
-MBAMServerSetup.exe gera os seguintes arquivos de log na pasta% Temp% do usuário durante a instalação do MBAM:<br /> **Microsoft_BitLocker_Administration_and_Monitoring_<14 números>. log**
+MBAMServerSetup.exe gera os seguintes arquivos de log na pasta %temp% do usuário durante a instalação do MBAM:<br /> **Microsoft_BitLocker_Administration_and_Monitoring_<14 números>.log**
 
-MBAMServerSetup.exe registra as ações que foram feitas durante a instalação do MBAM e o recurso MBAM Server Feature:<br /> **Microsoft_BitLocker_Administration_and_Monitoring_<14_numbers # C1_0_MBAMServer.msi. log**
+MBAMServerSetup.exe registra as ações que foram tomadas durante a instalação do MBAM e a instalação do recurso do servidor MBAM:<br /> **Microsoft_BitLocker_Administration_and_Monitoring_<14_numbers>_0_MBAMServer.msi.log**
 
-MBAMServerSetup.exe registra ações adicionais que foram executadas durante a instalação.
+MBAMServerSetup.exe registra ações adicionais que foram tomadas durante a instalação.
 
-### Arquivo de log de instalação do cliente MBAM
+### <a name="mbam-client-installation-log-file"></a>Arquivo de log de instalação do cliente MBAM
 
-A instalação do cliente é gravada no seguinte arquivo de log na pasta% temp% (ou em um local personalizado, dependendo de como o cliente foi instalado): <br />**MSI \<five random characters\> . log**
+A instalação do cliente é registrada no arquivo de log a seguir na pasta %temp% (ou em um local personalizado, dependendo de como o cliente foi instalado): <br />**MSI \<five random characters\> .log**
 
-Esse log contém as ações que são executadas durante a instalação do cliente do MBAM.
+Esse log contém as ações que são tomadas durante a instalação do cliente MBAM.
  
-### Canal de log de eventos do cliente MBAM
+### <a name="mbam-client-event-logging-channel"></a>Canal de registro em log de eventos do cliente MBAM
 
-O MBAM tem canais de log de eventos separados. Os arquivos de log do administrador, analítico e operacional estão localizados no Visualizador de eventos, em **logs de aplicativos e serviços**  >  **Microsoft**  >  **Windows**  >  **MBAM**.
+O MBAM tem canais separados de registro em log de eventos. Os arquivos de log Admin, Analytical e Operational estão localizados no Visualizador de Eventos, em **Application and Services Logs**  >  **microsoft**  >  **Windows**  >  **MBAM**.
 
 A tabela a seguir fornece uma breve descrição de cada log de eventos.
  
 |Log de eventos| Descrição|
 |----------|-------|
-|Microsoft-Windows-MBAM/administrador|  Contém mensagens de erro|
-|Microsoft-Windows-MBAM/analítica|   Contém informações de registro avançado|
-|Microsoft-Windows-MBAM/operacional|    Contém mensagens de êxito|
+|Microsoft-Windows-MBAM/Admin|  Contém mensagens de erro|
+|Microsoft-Windows-MBAM/Analytic|   Contém informações de registro em log avançadas|
+|Microsoft-Windows-MBAM/Operacional|    Contém mensagens de sucesso|
 
-### Canal de log de eventos do MBAM Server
+### <a name="mbam-server-event-logging-channel"></a>Canal de registro em log de eventos do servidor MBAM
 
-Os arquivos de log estão localizados em Visualizador de eventos, em **logs de aplicativos e serviços**  >  **Microsoft**  >  **Windows**  >  **MBAM**. A tabela a seguir inclui logs de eventos do servidor que foram introduzidos no MBAM 2,5:
+Os arquivos de log estão localizados no Visualizador de Eventos, em **Application and Services Logs**  >  **Microsoft**  >  **Windows**  >  **MBAM**. A tabela a seguir inclui logs de eventos do servidor que foram introduzidos no MBAM 2.5:
 
 |Log de eventos| Descrição|
 |--------|-------------|
-|Microsoft-Windows-MBAM/administrador|  Contém mensagens de erro|
-|Microsoft-Windows-MBAM/analítica|   Contém informações de registro avançado|
-|Microsoft-Windows-MBAM/operacional|    Contém mensagens de êxito|
+|Microsoft-Windows-MBAM/Admin|  Contém mensagens de erro|
+|Microsoft-Windows-MBAM/Analytic|   Contém informações de registro em log avançadas|
+|Microsoft-Windows-MBAM/Operacional|    Contém mensagens de sucesso|
 
-### Logs de serviços Web do MBAM
+### <a name="mbam-web-service-logs"></a>Logs de serviço Web do MBAM
 
-Cada log de serviço Web do MBAM grava as informações de registro em um arquivo SVCLOG. Por padrão, cada serviço Web grava o arquivo de rastreamento em uma pasta que usa seu nome na pasta C:\inetpub\Microsoft BitLocker Management Solution\Logs.
+Cada log de serviço Web do MBAM grava informações de registro em log em um arquivo SVCLOG. Por padrão, cada serviço Web grava o arquivo de rastreamento em uma pasta que usa seu nome na pasta C:\inetpub\Microsoft BitLocker Management Solution\Logs.
 
-Você pode usar a ferramenta Visualizador de rastreamento de serviço (parte do Microsoft Visual Studio) para analisar os rastreamentos do svclog.
+Você pode usar a ferramenta visualizador de rastreamento de serviço (parte do Microsoft Visual Studio) para analisar os rastreamentos de svclog.
 
-## Solução de problemas de criptografia e emissão de relatórios
+## <a name="troubleshooting-encryption-and-reporting-issues"></a>Solução de problemas de criptografia e relatórios
 
 Esta seção contém informações de solução de problemas para funcionalidade do servidor, funcionalidade do cliente, configurações e problemas conhecidos:
  
-### Instalação do cliente do MBAM, configurações da política de grupo
+### <a name="mbam-client-installation-group-policy-settings"></a>Instalação do cliente MBAM, configurações de Política de Grupo
 
-Determine se o agente do MBAM está instalado no computador cliente. Quando o MBAM é instalado, ele cria um serviço denominado serviço de cliente de gerenciamento BitLocker. Este serviço é configurado para iniciar automaticamente. Determine se o serviço está em execução.
+Determine se o agente MBAM está instalado no computador cliente. Quando o MBAM é instalado, ele cria um serviço chamado Serviço de Cliente de Gerenciamento do BitLocker. Esse serviço é configurado para iniciar automaticamente. Determine se o serviço está em execução.
 
-Verifique se as configurações de política de grupo do MBAM são aplicadas no computador cliente. A seguinte subchave do registro será criada se as configurações de política de grupo tiverem sido aplicadas no computador cliente: **HKEY_LOCAL_MACHINE \software\policies\microsoft\fve\mdopbitlockermanagement**
+Certifique-se de que as configurações da Política de Grupo do MBAM sejam aplicadas no computador cliente. A seguinte sub-chave do Registro será criada se as configurações da Política de Grupo foram aplicadas no computador cliente: **HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE\MDOPBitLockerManagement**
 
-Verifique se essa chave existe e se está preenchida usando valores por configurações de política de grupo.
+Verifique se essa chave existe e é preenchida usando valores por configurações de Política de Grupo.
 
-### Agente MBAM no período de atraso inicial
+### <a name="mbam-agent-in-the-initial-delay-period"></a>Agente MBAM no período de atraso inicial
 
-O cliente MBAM não inicia a operação imediatamente após a instalação. Há um atraso inicial aleatório de 1 – 18 minutos antes de o agente MBAM iniciar a operação. Além do atraso inicial, há um atraso de pelo menos 90 minutos. (O atraso depende das configurações de política de grupo que estão definidas para a frequência de verificação do status do cliente.) Portanto, o atraso total antes da operação de início do cliente é a demora de *inicialização aleatória*atraso da  +  *frequência de verificação do cliente*.
+O cliente MBAM não inicia a operação imediatamente após a instalação. Há um atraso aleatório inicial de 1 a 18 minutos antes de o Agente MBAM iniciar sua operação. Além do atraso inicial, há um atraso de pelo menos 90 minutos. (O atraso depende das configurações da Política de Grupo configuradas para a frequência de verificação do status do cliente.) Portanto, o atraso total antes de um cliente iniciar a operação é o *atraso aleatório*da verificação de frequência  +  *do cliente*.
 
-Se os logs de eventos de administração e operacionais estiverem em branco, o cliente ainda não iniciou a operação e estará no período de atraso mencionado anteriormente. Se você quiser ignorar o atraso, siga estas etapas:
+Se os logs de eventos Operacional e Administrador estão em branco, o cliente ainda não iniciou a operação e está no período de atraso mencionado anteriormente. Se você quiser ignorar o atraso, siga estas etapas:
  
-1. Parar o serviço de serviço de cliente de gerenciamento BitLocker.
+1. Pare o serviço de Serviço de Cliente de Gerenciamento do BitLocker.
 
-2. Na subchave do registro do **HKEY_LOCAL_MACHINE \software\microsoft\mbam** , crie o valor do registro **NoStartupDelay** , defina seu tipo como **REG_DWORD**e, em seguida, defina seu valor como **1**.
+2. Na ** sub-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MBAM** do Registro, crie o valor do Registro **NoStartupDelay,** desfize seu tipo como **REG_DWORD**e, em seguida, de definir seu valor **como 1**.
 
-3. Em **HKEY_LOCAL_MACHINE \software\policies\microsoft\fve\mdopbitlockermanagement**, defina os valores **ClientWakeupFrequency** e **StatusReportingFrequency** como **1**. Esses valores retornarão às configurações originais depois que as atualizações de política de grupo estiverem no computador.
+3. Em **HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE\MDOPBitLockerManagement, **de definir **os valores ClientWakeupFrequency** e **StatusReportingFrequency** **como 1**. Esses valores serão revertidos para suas configurações originais depois que as atualizações da Política de Grupo estão no computador.
 
-4. Inicie o serviço de serviço de cliente de gerenciamento BitLocker.
+4. Inicie o serviço de Serviço de Cliente de Gerenciamento do BitLocker.
 
-Depois que o serviço for iniciado, se você fizer logon localmente no computador e não houver erros, você deve receber uma solicitação para criptografar o computador dentro de um minuto. Se você não receber uma solicitação, analise os logs de administração do MBAM para obter as entradas de erro.
+Depois que o serviço for iniciado, se você fizer logoff localmente no computador e não houver erros, receberá uma solicitação para criptografar o computador em um minuto. Se você não receber uma solicitação, revise os logs de administrador do MBAM para ver se há entradas de erro.
 
-### O computador não tem um dispositivo TPM ou o dispositivo TPM não está habilitado no BIOS
+### <a name="computer-does-not-have-a-tpm-device-or-the-tpm-device-is-not-enabled-in-the-bios"></a>O computador não tem um dispositivo TPM ou o dispositivo TPM não está habilitado no BIOS
 
-Examine o log de eventos de administrador do MBAM. Você verá uma entrada de evento semelhante à seguinte no log de eventos de administração do MBAM:
+Revise o log de eventos do Administrador do MBAM. Você verá uma entrada de evento que se parece com o seguinte no log de eventos administrador do MBAM:
 
     Log Name:      Microsoft-Windows-MBAM/Admin
     Source:        Microsoft-Windows-MBAM
@@ -110,21 +110,21 @@ Examine o log de eventos de administrador do MBAM. Você verá uma entrada de ev
     The TPM hardware is missing.
     TPM is needed to encrypt the operating system drive with any TPM protector.
 
-Abra o gerenciamento TPM (TPM. msc) e verifique se o computador tem um dispositivo TPM. Se o TPM. msc não mostrar um dispositivo, abra o Gerenciador de dispositivos (devmgmt. msc) e verifique se há um módulo de plataforma confiável em dispositivos de segurança. Se você não vir um dispositivo de módulo de plataforma confiável, isso pode ser verdade por um dos seguintes motivos:
+Abra o Gerenciamento do TPM (tpm.msc) e verifique se o computador tem um dispositivo TPM. Se o tpm.msc não mostrar um dispositivo, abra o Gerenciador de Dispositivos (devmgmt.msc) e verifique se há um Módulo de Plataforma Confiável em Dispositivos de Segurança. Se você não vir um dispositivo Trusted Platform Module, isso pode ser verdadeiro por um dos seguintes motivos:
 
-* Seu sistema não tem um dispositivo TPM/segurança (Trusted Platform Module).
+* Seu sistema não tem um dispositivo TPM/Security (Trusted Platform Module).
 
 * O dispositivo TPM está desabilitado no BIOS.
 
-* O dispositivo TPM está habilitado no BIOS, mas o gerenciamento do dispositivo TPM da configuração do sistema operacional está desabilitado no BIOS.
+* O dispositivo TPM está habilitado no BIOS, mas o gerenciamento do dispositivo TPM a partir da configuração do sistema operacional está desabilitado no BIOS.
 
-* Você não está usando um driver da Microsoft para o dispositivo TPM. Examine os dispositivos listados no Gerenciador de dispositivos para identificar o driver de dispositivo TPM da Microsoft.
+* Você não está usando um driver da Microsoft para o dispositivo TPM. Revise os dispositivos listados no gerenciador de dispositivos para identificar o driver de dispositivo do Microsoft TPM.
 
 Se o dispositivo TPM não estiver usando o driver C:\Windows\System32\tpm.sys, você deverá atualizar o driver selecionando o arquivo C:\Windows\Inf\tpm.inf.
 
-### O computador não tem uma partição de sistema válida
+### <a name="computer-does-not-have-a-valid-system-partition"></a>O computador não tem uma partição SYSTEM válida
 
-Examine o log de eventos de administrador do MBAM. Você verá uma entrada de evento semelhante à seguinte no log de eventos de administração do MBAM:
+Revise o log de eventos do Administrador do MBAM. Você verá uma entrada de evento que se parece com o seguinte no log de eventos administrador do MBAM:
 
     Log Name:      Microsoft-Windows-MBAM/Admin
     Source:        Microsoft-Windows-MBAM
@@ -139,21 +139,21 @@ Examine o log de eventos de administrador do MBAM. Você verá uma entrada de ev
     The system volume is missing.
     SystemVolume is needed to encrypt the operating system drive.
 
-O BitLocker exige uma partição de sistema para habilitar a criptografia ([criptografia de unidade de disco BitLocker no Windows 7: perguntas frequentes](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-7/ee449438(v=ws.10)?redirectedfrom=MSDN#bkmk_partitions)).
+O BitLocker requer uma partição SYSTEM para habilitar a criptografia ( Criptografia de Unidade do BitLocker no Windows[7: Perguntas frequentes](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-7/ee449438(v=ws.10)?redirectedfrom=MSDN#bkmk_partitions)).
 
-O MBAM não cria a partição do sistema automaticamente. Você pode usar o utilitário de preparação de unidade BitLocker (bdehdcfg.exe) para criar a partição do sistema e mover os arquivos de inicialização necessários.
+O MBAM não cria a partição do sistema automaticamente. Você pode usar o utilitário de preparação de unidade do BitLocker (bdehdcfg.exe) para criar a partição do sistema e mover os arquivos de inicialização necessários.
 
-Por exemplo, você pode usar o comando **% windir% \system32\bdeHdCfg.exe-Target default-size 300 – Quiet** para preparar a unidade silenciosamente antes de implantar o MBAM para criptografar as unidades. Isso requer uma reinicialização. Você também pode criar um script para a ação caso isso seja necessário. O documento a seguir descreve a ferramenta de preparação de unidade de disco BitLocker:
+Por exemplo, você pode usar o comando **%windir%\system32\bdeHdCfg.exe -target padrão -size 300 –quiet** para preparar a unidade silenciosamente antes de implantar o MBAM para criptografar as unidades. Isso requer uma reinicialização. Você também pode roteá-la se isso for necessário. O documento a seguir descreve a Ferramenta de Preparação da Unidade bitLocker:
 
-[Descrição da ferramenta de preparação de unidade de disco BitLocker](https://support.microsoft.com/help/933246)
+[Descrição da Ferramenta de Preparação de Unidade do BitLocker](https://support.microsoft.com/help/933246)
 
-### As unidades não estão formatadas para ter um sistema de arquivos compatível
+### <a name="drives-are-not-formatted-to-have-a-compatible-file-system"></a>As unidades não são formatadas para ter um sistema de arquivos compatível
 
-Consulte o [artigo do TechNet para requisitos do sistema de arquivos para o BitLocker](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-7/ee449438(v=ws.10)?redirectedfrom=MSDN#bkmk_hsrequirements).
+Consulte o [artigo technet para requisitos do sistema de arquivos para BitLocker](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-7/ee449438(v=ws.10)?redirectedfrom=MSDN#bkmk_hsrequirements).
 
-### Conflito de política de grupo
+### <a name="group-policy-conflict"></a>Conflito de Política de Grupo
 
-Você verá uma entrada de evento semelhante à seguinte no log de eventos de administração do MBAM:
+Você verá uma entrada de evento que se parece com o seguinte no log de eventos administrador do MBAM:
 
     Log Name:      Microsoft-Windows-MBAM/Admin
     Source:        Microsoft-Windows-MBAM
@@ -168,21 +168,21 @@ Você verá uma entrada de evento semelhante à seguinte no log de eventos de ad
     Detected Fixed Data Drive volume encryption policies conflict.
     Check BitLocker and MBAM policies related to FDD drive protectors.
 
-Verifique as configurações da política de grupo para garantir que você não tenha uma configuração conflitante entre as configurações da política de grupo do MBAM.
+Verifique as configurações da Política de Grupo para garantir que você não tenha uma configuração conflitante entre as configurações da Política de Grupo do MBAM.
 
-Você deve configurar a política de grupo usando o modelo de MBAM do MDOP e não o modelo de criptografia de unidade de disco BitLocker.
+Você deve configurar a Política de Grupo usando o modelo MDOP MBAM e não o modelo de Criptografia de Unidade do BitLocker.
 
 Por exemplo:
 
-Em configurações de criptografia de unidade de sistema operacional, você selecionou TPM como protetor e também **permite pinos aprimorados para inicialização**. Essas são configurações conflitantes porque a proteção somente TPM não requer um PIN. Portanto, você deve desabilitar a configuração de pinos aprimorados.
+Em Configurações de criptografia de unidade do sistema operacional, você selecionou o TPM como o protetor e também selecionou Permitir PINs avançados **para inicialização.** Essas são configurações conflitantes porque a proteção somente TPM não exige um PIN. Portanto, você deve desabilitar a configuração de PINs aprimorados.
 
-### O usuário pode ter solicitado uma isenção
+### <a name="user-may-have-requested-an-exemption"></a>O usuário pode ter solicitado uma isenção
 
-Se você ativou a configuração do Computador\modelos Administrativos\Componentes do Components\MDOP MBAM (gerenciamento de BitLocker) \Client Management\Configure política de grupo da política de isenção de usuário, os usuários terão a opção de solicitar uma isenção.
+Se você habilitar a configuração do computador\Modelos Administrativos\Windows Components\MDOP MBAM (Gerenciamento do BitLocker)\Gerenciamento de Cliente\Configurar a política de grupo de isenção do usuário, os usuários terão a opção de solicitar uma isenção.
 
-Por padrão, se o usuário solicitar uma isenção, a isenção será válida por 7 dias e o usuário não receberá prompts para criptografar durante esse período. (O valor padrão pode ser aumentado ou diminuído durante a configuração da política.) Quando o período de isenção termina, o usuário é solicitado a criptografar.
+Por padrão, se o usuário solicitar uma isenção, a isenção será válida por 7 dias e o usuário não receberá prompts para criptografar durante esse período. (O valor padrão pode ser aumentado ou reduzido durante a configuração da política.) Após o fim do período de isenção, o usuário é solicitado a criptografar.
 
-Você verá a seguinte entrada no log de eventos de administrador do MBAM quando um computador estiver em isenção de usuário:
+Você verá a seguinte entrada no log de eventos administrador do MBAM quando um computador estiver sob isenção do usuário:
 
     Log Name:      Microsoft-Windows-MBAM/Admin
     Source:        Microsoft-Windows-MBAM
@@ -196,21 +196,21 @@ Você verá a seguinte entrada no log de eventos de administrador do MBAM quando
     Description:
     The user is exempt from encryption.
 
-Se você quiser substituir manualmente a isenção do usuário de um computador, siga estas etapas:
+Se você deseja substituir manualmente a isenção do usuário para um computador, siga estas etapas:
  
-1. Defina o valor AllowUserExemption como **0** na seguinte subchave do registro: <br />
-**HKEY_LOCAL_MACHINE \SOFTWARE\Policies\Microsoft\FVE\MDOPBitLockerManagement**
+1. De definir o valor AllowUserExemption como **0** na seguinte sub-chave do Registro: <br />
+**HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE\MDOPBitLockerManagement**
 
-2. Exclua todos os valores do registro na seguinte subchave do registro, exceto para **AgentVersion**, **EncodedComputerName**e **instalado**:<br />
-**HKEY_LOCAL_MACHINE \SOFTWARE\Microsoft\MBAM**
+2. Exclua todos os valores do Registro na seguinte sub-chave do Registro, exceto **Para AgentVersion,** **EncodedComputerName**e **Installed**:<br />
+**HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MBAM**
 
-    **Observação** Você deve reiniciar o agente MBAM para que as alterações entrem em vigor.
+    **Observação** Você deve reiniciar o agente MBAM para que as alterações entre em vigor.
 
-Lembre-se de que depois de aplicar a política de grupo ao computador, esses valores podem reverter às configurações originais.
+Esteja ciente de que, depois de aplicar a Política de Grupo ao computador, esses valores poderão ser revertidos para suas configurações originais.
 
-### Problema do WMI
+### <a name="wmi-issue"></a>Problema WMI
 
-MBAM usa métodos da classe win32_encryptablevolume para gerenciar o BitLocker. Se esse módulo estiver cancelado ou corrompido, o cliente MBAM não funcionará corretamente, e você verá a seguinte entrada de evento no log de eventos de administração do MBAM:
+O MBAM usa métodos da classe win32_encryptablevolume para gerenciar o BitLocker. Se esse módulo estiver sem registro ou corrompido, o cliente MBAM não funcionará corretamente e você verá a seguinte entrada de evento no log de eventos do Administrador do MBAM:
 
     Log Name:      Microsoft-Windows-MBAM/Admin
     Source:        Microsoft-Windows-MBAM
@@ -228,21 +228,21 @@ MBAM usa métodos da classe win32_encryptablevolume para gerenciar o BitLocker. 
     Details:
     NULL
 
-Além disso, você pode observar que as políticas de recuperação e de hardware não se aplicam com o código de erro 0x8007007E. Isso é convertido em "o módulo especificado não foi encontrado".
+Além disso, você pode observar que as políticas de Recuperação e Hardware não se aplicam ao Código de Erro 0x8007007e. Isso se traduz em "O módulo especificado não pôde ser encontrado".
 
-Para resolver esse problema, você deve registrar novamente a classe **Win32_EncryptableVolume** usando o seguinte comando:
+Para resolver esse problema, você deve recadastrar **a classe win32_encryptablevolume** usando o seguinte comando:
 
 ```cmd
 mofcomp c:\Windows\System32\wbem\win32_encryptablevolume.mof
 ```
 
-## Solução de problemas de comunicação do agente MBAM
+## <a name="troubleshooting-mbam-agent-communication-issues"></a>Solução de problemas de comunicação do Agente do MBAM
 
-Esta seção contém informações de solução de problemas para os seguintes problemas relacionados à comunicação do agente do MBAM:
+Esta seção contém informações de solução de problemas para os seguintes problemas relacionados à comunicação do agente MBAM:
 
-### URL do serviço de MBAM incorreta
+### <a name="incorrect-mbam-service-url"></a>URL de serviço MBAM incorreta
 
-Se o valor do serviço de status de conformidade do MBAM ou do serviço de recuperação e de hardware estiver incorreto, você verá uma entrada de evento semelhante à seguinte no log de eventos de administração do MBAM no computador cliente:
+Se o valor do Serviço de Status de Conformidade do MBAM ou do Serviço de Recuperação e Hardware estiver incorreto, você verá uma entrada de evento que se parece com o seguinte no log de eventos do Administrador do MBAM no computador cliente:
 
     Log Name:      Microsoft-Windows-MBAM/Admin
     Source:        Microsoft-Windows-MBAM
@@ -308,25 +308,25 @@ Se o valor do serviço de status de conformidade do MBAM ou do serviço de recup
     Details:
     The endpoint address URL is invalid.
 
-Verifique os valores de **KeyRecoveryServiceEndPoint** e **StatusReportingServiceEndpoint** sob a seguinte subchave do registro no computador cliente: <br />
-**HKEY_LOCAL_MACHINE \SOFTWARE\Policies\Microsoft\FVE\MDOPBitLockerManagement**
+Verifique os valores **de KeyRecoveryServiceEndPoint** e **StatusReportingServiceEndpoint** na seguinte sub-chave do Registro no computador cliente: <br />
+**HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE\MDOPBitLockerManagement**
 
-Por padrão, a URL para o KeyRecoveryServiceEndPoint (recuperação do MBAM e o ponto de extremidade do serviço de hardware) está no seguinte formato: <br />
+Por padrão, a URL de KeyRecoveryServiceEndPoint (ponto de extremidade de serviço de Recuperação e Hardware do MBAM) está no seguinte formato: <br />
 **http:// \<servername\> : \<port\> /MBAMRecoveryAndHardwareService/CoreService.svc**
 
-Por padrão, a URL para o ponto de extremidade do serviço de relatório de status do StatusReportingServiceEndpoint (MBAM status) está no seguinte formato:<br />
-**http:// \<servername\> : \<port\> /MBAMComplianceStatusService/StatusReportingService.svc**
+Por padrão, a URL para StatusReportingServiceEndpoint (ponto de extremidade do serviço de relatório de Status do MBAM) está no seguinte formato:<br />
+**http:// : \<servername\> \<port\> /MBAMComplianceStatusService/StatusReportingService.svc**
 
 > [!Note]
 > Não deve haver espaços na URL.
 
-Se a URL do serviço estiver incorreta, você deverá corrigir a URL do serviço na seguinte configuração de política de Grupo:
+Se a URL do serviço estiver incorreta, você deverá corrigir a URL do serviço na seguinte configuração de Política de Grupo:
 
-**Configuração**  >  do computador **Regras**  >  de **Modelos administrativos**  >  **Componentes**  >  do Windows **MDOP MBAM (gerenciamento de BitLocker)**  >  **Gerenciamento**  >  de cliente **Configurar os serviços do MBAM**
+**Configuração do computador**  >  **Políticas**  >  **Modelos Administrativos**  >  **Windows componentes**  >  **MDOP MBAM (Gerenciamento do BitLocker)**  >  **Gerenciamento de Cliente**  >  **Configurar o MBAM Services**
 
-### Problema de conectividade que afeta o servidor de administração do MBAM
+### <a name="connectivity-issue-that-affects-the-mbam-administration-server"></a>Problema de conectividade que afeta o servidor de administração do MBAM
 
-O agente MBAM não poderá postar atualizações para o banco de dados se houver problemas de conectividade entre o agente cliente e o servidor de administração do MBAM. Nesse caso, você observará entradas de falha de conectividade no log de eventos de administrador do MBAM no computador cliente:
+O agente do MBAM não poderá postar atualizações no banco de dados se existirem problemas de conectividade entre o agente cliente e o servidor de administração do MBAM. Nesse caso, você observará entradas de falha de conectividade no log de eventos administrador do MBAM no computador cliente:
 
     Log Name:      Microsoft-Windows-MBAM/Admin
     Source:        Microsoft-Windows-MBAM
@@ -380,37 +380,37 @@ O agente MBAM não poderá postar atualizações para o banco de dados se houver
 
 Verificações básicas:
 
-* Verifique a conectividade básica fazendo ping no servidor de administração do MBAM por nome e IP. Verifique se você pode se conectar ao site de administração do MBAM ou à porta de serviço usando o Telnet ou o Portqry.
+* Verifique a conectividade básica pingando o servidor de administração do MBAM por nome e IP. Verifique se você pode se conectar ao site de administração do MBAM ou porta de serviço usando telnet ou portqry.
 
-* Verifique se o serviço IIS está em execução no servidor de administração e monitoramento do MBAM e se o serviço Web do MBAM está ouvindo na mesma porta que está configurada no computador cliente do MBAM ( `netstat –ano | find "portnumber"` ).
+* Verifique se o serviço do IIS está sendo executado no servidor de administração e monitoramento do MBAM e se o serviço Web do MBAM está escutando na mesma porta configurada no computador cliente do MBAM ( `netstat –ano | find "portnumber"` ).
 
-* Verifique se o número da porta que está configurado para o site do MBAM está usando o Gerenciador do IIS (inetmgr). Certifique-se de que o número da porta seja igual ao número da porta na qual o cliente está ouvindo. Certifique-se de que o número da porta não seja compartilhado por outro aplicativo. Por exemplo, outro aplicativo no servidor não deve estar usando a mesma porta.
+* Verifique se o número de porta configurado para o site do MBAM está usando o Gerenciador do IIS (inetmgr). Certifique-se de que o número da porta seja igual ao número da porta no qual o cliente está escutando. Certifique-se de que o número da porta não seja compartilhado por outro aplicativo. Por exemplo, outro aplicativo no servidor não deve usar a mesma porta.
 
-* Se houver um firewall, certifique-se de que a porta esteja aberta no firewall ou servidor proxy.
+* Se houver um firewall, certifique-se de que a porta está aberta no firewall ou no servidor proxy.
 
-* Se a comunicação entre o cliente e o servidor for segura, certifique-se de que você esteja usando um certificado SSL válido.
+* Se a comunicação entre cliente e servidor estiver segura, certifique-se de que você está usando um certificado SSL válido.
 
-* Verifique a conectividade de rede entre o servidor Web e o servidor de banco de dados para o qual os dados são enviados para inserção. Você pode verificar a conectividade do banco de dados do servidor Web para o servidor de banco de dados usando o administrador de fonte de dados ODBC. As informações detalhadas de solução de problemas de conexão do SQL Server estão disponíveis em [como solucionar problemas de conexão com o mecanismo de banco de dados do SQL Server](https://social.technet.microsoft.com/wiki/contents/articles/2102.how-to-troubleshoot-connecting-to-the-sql-server-database-engine.aspx).
+* Verifique a conectividade de rede entre o servidor Web e o servidor de banco de dados para o qual os dados são enviados para inserção. Você pode verificar a conectividade do banco de dados do servidor Web para o servidor de banco de dados usando o Administrador de Fonte de Dados ODBC. Informações detalhadas SQL Server solução de problemas de conexão estão disponíveis em Como solucionar problemas de conexão [com o SQL Server Mecanismo de Banco de Dados](https://social.technet.microsoft.com/wiki/contents/articles/2102.how-to-troubleshoot-connecting-to-the-sql-server-database-engine.aspx).
 
-#### Solução de problemas do problema de conectividade
+#### <a name="troubleshooting-the-connectivity-issue"></a>Solução de problemas do problema de conectividade
 
-Verifique se a URL do serviço que está configurada no cliente está correta. Copie o valor da URL para KeyRecoveryServiceEndPoint (**HKEY_LOCAL_MACHINE \software\policies\microsoft\fve\mdopbitlockermanagement**) a partir do registro e abra-o no Internet Explorer.
+Certifique-se de que a URL de serviço configurada no cliente está correta. Copie o valor da URL de KeyRecoveryServiceEndPoint (**HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE\MDOPBitLockerManagement**) do Registro e abra-o no Internet Explorer.
 
-Da mesma forma, copie o valor da URL para StatusReportingServiceEndpoint (**HKEY_LOCAL_MACHINE \software\policies\microsoft\fve\mdopbitlockermanagement**) e abra-o no Internet Explorer.
-
-> [!Note]
-> Se não conseguir navegar até a URL do computador cliente, você deve testar a conectividade de rede básica do cliente para o servidor que está executando o IIS. Veja os pontos 1, 2, 3 e 4 na seção anterior.
-
-Além disso, examine os logs do aplicativo no servidor de administração e monitoramento em busca de erros.
-
-Você pode fazer um rastreamento de rede simultânea entre o cliente e o servidor e examinar o rastreamento para determinar a causa da falha de conexão entre o agente cliente e o servidor de administração do MBAM.
+Da mesma forma, copie o valor da URL para StatusReportingServiceEndpoint (**HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE\MDOPBitLockerManagement**) e abra-o no Internet Explorer.
 
 > [!Note]
-> Se você puder navegar para as URLs de serviço do computador cliente e houver entradas de erro de conectividade nos logs de eventos de administrador do MBAM, isso pode ser devido a uma falha de conectividade entre o servidor de administração e o servidor de banco de dados.
+> Se você não puder navegar até a URL do computador cliente, teste a conectividade de rede básica do cliente para o servidor que está executando o IIS. Consulte os pontos 1, 2, 3 e 4 na seção anterior.
 
-Se você conseguir navegar para as duas URLs de serviço e houver conectividade entre o cliente e o servidor que está em execução, o IIS está funcionando. No entanto, pode haver um problema em comunicação entre o servidor que está executando o IIS e o servidor de banco de dados.
+Além disso, revise os logs de aplicativo no servidor de administração e monitoramento para ver se há erros.
 
-Os serviços do MBAM podem não conseguir se conectar ao servidor de banco de dados devido a um problema de rede ou uma configuração de cadeia de conexão de banco de dados incorreta. Examine os logs do aplicativo no servidor de administração e monitoramento. Você pode ver erros de entrada ou avisos do 2.0.50727.0 de origem ASP.NET que se assemelham à seguinte entrada de log:
+Você pode fazer um rastreamento de rede simultâneo entre o cliente e o servidor e analisar o rastreamento para determinar a causa da falha de conexão entre o agente cliente e o servidor de administração do MBAM.
+
+> [!Note]
+> Se você puder navegar até as URLs de serviço do computador cliente e houver entradas de erro de conectividade nos logs de eventos de administrador do MBAM, isso pode ser devido a uma falha de conectividade entre o servidor de administração e o servidor de banco de dados.
+
+Se você puder navegar com êxito para URLs de serviço e houver conectividade entre o cliente e o servidor em execução, o IIS está funcionando. No entanto, pode haver um problema na comunicação entre o servidor que está executando o IIS e o servidor de banco de dados.
+
+Os serviços do MBAM podem não conseguir se conectar ao servidor de banco de dados devido a um problema de rede ou uma configuração incorreta de cadeia de caracteres de conexão de banco de dados. Revise os logs de aplicativo no servidor de administração e monitoramento. Você pode ver entradas de erros ou avisos da fonte ASP.NET 2.0.50727.0 que se parecem com a seguinte entrada de log:
 
     Log Name:      Application
     Source:        ASP.NET 2.0.50727.0
@@ -490,57 +490,57 @@ Os serviços do MBAM podem não conseguir se conectar ao servidor de banco de da
         Sql ErrorCode: 5
         Error Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
 
-#### Possíveis causas
+#### <a name="possible-causes"></a>Possíveis causas
 
-##### Causa 1
+##### <a name="cause-1"></a>Causa 1
 
-O administrador pode ter especificado um nome de instância de banco de dados/nome de banco de dados inválido durante a instalação dos componentes de servidor de administração e monitoramento.
+O administrador pode ter especificado um nome de instância de banco de dados inválido/nome do banco de dados durante a instalação dos componentes do servidor de administração e monitoramento.
 
-Você pode verificar e corrigir as cadeias de conexão de banco de dados usando o console de gerenciamento do IIS. Para fazer isso, abra o Gerenciador do IIS e navegue até Administração e monitoramento do Microsoft BitLocker. Para cada serviço listado no lado esquerdo, siga estas etapas para alterar as cadeias de conexão do banco de dados:
+Você pode verificar e corrigir as cadeias de conexão de banco de dados usando o console de Gerenciamento do IIS. Para fazer isso, abra o Gerenciador do IIS e navegue até Microsoft BitLocker Administration and Monitoring. Para cada serviço listado no lado esquerdo, siga estas etapas para alterar as cadeias de caracteres de conexão do banco de dados:
 
-1. No **modo de exibição recursos**, selecione duas **cadeias de conexão**.
+1. Em **Exibição de Recursos,** selecione duas vezes **Cadeias de Caracteres de Conexão**.
 
-2. Na página **cadeias de conexão** , selecione a cadeia de conexão que você deseja alterar.
+2. Na página **Cadeias de** Conexão, selecione a cadeia de caracteres de conexão que você deseja alterar.
 
-3. No painel **ações** , selecione **Editar**.
+3. No painel **Ações,** selecione **Editar**.
 
-4. Na caixa de diálogo **Editar Cadeia de conexão** , altere as propriedades que você deseja alterar e, em seguida, selecione **OK**.
+4. Na caixa **de diálogo Editar Cadeia de** Caracteres de Conexão, altere as propriedades que você deseja alterar e selecione **OK**.
 
-##### Causa 2
+##### <a name="cause-2"></a>Causa 2
 
-Porta do SQL Server bloqueada no firewall. Verifique o número da porta para a qual o SQL Server está configurado para escuta e certifique-se de que a porta esteja aberta no firewall entre o servidor de administração e o servidor de banco de dados.
+SQL Server porta bloqueada no firewall. Verifique o número de porta para o qual SQL Server está configurado para ouvir e verifique se a porta está aberta no firewall entre o servidor de administração e o servidor de banco de dados.
 
-##### Causa 3
+##### <a name="cause-3"></a>Causa 3
 
-Associações TCP/IP do SQL Server incorretas. Verifique as associações de TCP/IP do SQL no Gerenciador de configuração do SQL Server no servidor de banco de dados. MBAM requer que os protocolos TCP/IP e pipes nomeados estejam habilitados para se conectar ao banco de dados.
+Vinculações TCP/IP SQL servidor incorretos. Verifique SQL vínculos TCP/IP no SQL Server Configuration Manager no servidor de banco de dados. O MBAM exige que os protocolos TCP/IP e Pipes nomeados sejam habilitados para se conectar ao banco de dados.
 
-##### Causa 4
+##### <a name="cause-4"></a>Causa 4
 
-A conta NT Authority\Network Service ou a conta de computador do servidor de administração do MBAM não tem as permissões necessárias para se conectar ao banco de dados SQL.
+A conta do NT Authority\Network Service ou a conta do computador do SERVIDOR de Administração do MBAM não têm as permissões necessárias para se conectar ao banco de dados SQL de dados.
 
-Durante a instalação dos componentes de banco de dados no servidor de banco de dados, o instalador cria dois grupos locais: MBAM conformidade auditando o acesso ao banco de dados e recuperação do MBAM e acesso ao banco de dados de hardware.
+Durante a instalação de componentes de banco de dados no servidor de banco de dados, o instalador cria dois grupos locais: MBAM Compliance Auditing DB Access e MBAM Recovery e Hardware DB Access.
 
-A conta NT Authority\Network Service, a conta de computador do servidor de administração do MBAM e o usuário que instala os componentes do banco de dados são automaticamente adicionados a esses grupos.
+A conta do NT Authority\Network Service, a conta do computador do servidor de administração do MBAM e o usuário que instala os componentes do banco de dados são adicionados automaticamente a esses grupos.
 
-Esses grupos recebem as permissões necessárias no banco de dados durante a instalação. Todos os usuários que fazem parte deste grupo recebem automaticamente as permissões necessárias no banco de dados.
+Esses grupos têm as permissões necessárias no banco de dados durante a instalação. Todos os usuários que fazem parte desse grupo recebem automaticamente as permissões necessárias no banco de dados.
 
-O serviço Web pode não se conectar ao servidor de banco de dados devido a um problema de permissões se uma ou mais das seguintes condições forem verdadeiras:
+O serviço Web pode não se conectar ao servidor de banco de dados devido a um problema de permissões se uma ou mais das seguintes condições são verdadeiras:
 
-* Os grupos mencionados anteriormente são removidos dos grupos locais do servidor de banco de dados.
+* Os grupos mencionados anteriormente são removidos dos grupos locais no servidor de banco de dados.
 
-* A conta NT Authority\Network Service e a conta do computador do servidor de administração do MBAM não são membros desses grupos.
+* A conta do NT Authority\Network Service e a conta do computador do servidor de administração do MBAM não são membros desses grupos.
 
 * Esses grupos não têm as permissões necessárias no banco de dados.
 
-Você notará erros relacionados a permissões nos logs do aplicativo na administração do MBAM e no servidor de monitoramento se qualquer uma das condições anteriores forem verdadeiras. Nesse caso, você deve adicionar manualmente a conta NT Authority\Network Service e a conta de computador do servidor de administração do MBAM e conceder a elas uma função pública em todo o servidor no servidor de banco de dados SQL que está usando o SQL Server Management Studio ( https://msdn.microsoft.com/library/aa337562.aspx) .
+Você observará erros relacionados a permissões nos logs de aplicativo no servidor de administração e monitoramento do MBAM se qualquer uma das condições anteriores for verdadeira. Nesse caso, você deve adicionar manualmente a conta do NT Authority\Network Service e a conta do computador do servidor de administração do MBAM e conceder a eles uma função pública em todo o servidor no servidor de banco de dados SQL que está usando SQL Server Management Studio ( https://msdn.microsoft.com/library/aa337562.aspx) .
 
-#### Examine os logs do serviço Web
+#### <a name="review-the-web-service-logs"></a>Revisar os logs do serviço Web
 
-Se nenhum evento for registrado nos logs do aplicativo no servidor de administração do MBAM, é hora de analisar os logs do serviço Web (. svclog) do serviço Web MBAM hospedado no servidor de administração e monitoramento do MBAM. Você precisará usar a ferramenta Visualizador de rastreamento de serviço (SvcTraceViewer.exe) https://msdn.microsoft.com/library/ms732023.aspx para exibir o arquivo de log.
+Se nenhum evento for registrado nos logs de aplicativo no servidor de administração do MBAM, é hora de revisar os logs de serviço web (.svclog) do serviço Web do MBAM hospedado no servidor de administração e monitoramento do MBAM. Você terá que usar a Ferramenta do Visualizador de Rastreamento de Serviço (SvcTraceViewer.exe) para https://msdn.microsoft.com/library/ms732023.aspx exibir o arquivo de log.
 
-Você deve investigar principalmente os logs de rastreamento de serviço do RecoveryandHardwareService e do ComplianceStatusService. Por padrão, os logs do serviço Web estão localizados na pasta Solution\Logs C:\inetpub\Microsoft de gerenciamento do BitLocker. Nesse caso, cada serviço grava o arquivo. svclog em sua própria pasta.
+Você deve investigar principalmente os logs de rastreamento de serviço de RecoveryandHardwareService e ComplianceStatusService. Por padrão, os logs de serviço web estão localizados na pasta C:\inetpub\Microsoft BitLocker Management Solution\Logs. Lá, cada serviço grava seu arquivo .svclog em sua própria pasta.
 
-Examine a atividade no log de rastreamento do serviço em busca de erros ou entradas de aviso. Por padrão, as entradas de erro são realçadas em vermelho. Selecione a descrição do erro no painel direito do Visualizador de rastreamento para ver informações detalhadas sobre a entrada de erro. Veja a seguir um exemplo de entrada de erro do log de rastreamento:
+Revise a atividade no log de rastreamento de serviço para ver se há entradas de erro ou aviso. Por padrão, as entradas de erro são realçadas em vermelho. Selecione a descrição de erro no painel direito do visualizador de rastreamento para exibir informações detalhadas sobre a entrada de erro. Veja a seguir uma entrada de erro de exemplo do log de rastreamento:
 
     <E2ETraceEvent xmlns="http://schemas.microsoft.com/2004/06/E2ETraceEvent">
     <System xmlns="http://schemas.microsoft.com/2004/06/windows/eventlog/system">
@@ -559,90 +559,90 @@ Examine a atividade no log de rastreamento do serviço em busca de erros ou entr
     </ApplicationData>
     </E2ETraceEvent>
 
-## Reinstalação ou reconfiguração da infraestrutura do MBAM
+## <a name="re-installation-or-reconfiguration-of-mbam-infrastructure"></a>Nova instalação ou reconfiguração da infraestrutura do MBAM
 
-Para reinstalar ou reconfigurar a infraestrutura do MBAM, você deve conhecer os seguintes itens:
+Para instalar ou reconfigurar a infraestrutura do MBAM, você deve saber as seguintes coisas:
 
-* Conta do pool de aplicativos
+* Conta do Pool de Aplicativos
 
-* Grupos do MBAM (assistência técnica, avançado, grupo de usuários de relatório)
+* Grupos MBAM (Helpdesk, Advanced, Report Users Group)
 
-* URL de relatórios do MBAM
+* URL de relatórios mbam
 
-* Nome do SQL Server e nomes de bancos de dados
+* SQL Server nome e nomes de banco de dados
 
-* MBAM ReadWrite e ReadOnly
+* Contas ReadWrite e ReadOnly do MBAM
 
-### Conta do pool de aplicativos
+### <a name="application-pool-account"></a>Conta do Pool de Aplicativos
 
-Para localizar a conta do pool de aplicativos, faça logon no servidor Web MBAM, abra o **Gerenciador dos serviços de informações da Internet (IIS)** e selecione **pools de aplicativos**:
+Para encontrar a conta do Pool de Aplicativos, faça logoff no Servidor Web do MBAM, abra o Gerenciador Serviços de Informações da Internet **(IIS)** e selecione **Pools de Aplicativos**:
 
-![pools de aplicativos](images/troubleshooting-MBAM-installation-1.png)
+![pools de aplicativos.](images/troubleshooting-MBAM-installation-1.png)
 
-O SPN (nome da entidade de serviço) deve ser definido nesta conta. Essa configuração é muito importante para a funcionalidade do MBAM.
+O Nome da Entidade de Serviço (SPN) deve ser definido nesta conta. Essa configuração é muito importante para a funcionalidade do MBAM.
 
-### Grupos do MBAM (assistência técnica, avançado, grupo de usuários relatórios e URL de relatórios)
+### <a name="mbam-groups-helpdesk-advanced-report-users-group-and-reports-url"></a>Grupos mbam (Helpdesk, Advanced, Report Users Group and Reports URL)
 
-![Grupos do MBAM](images/troubleshooting-MBAM-installation-2.png)
+![Grupos MBAM.](images/troubleshooting-MBAM-installation-2.png)
 
-Isso fornece informações como grupo de helpdesk, grupo avançado de assistência técnica, grupo de usuários de relatório e URL de relatórios do MBAM. A URL de relatórios do MBAM deve ser fornecida na configuração do MBAM e deve ser lida como: http (s)://servername/ReportServer.
+Isso fornece informações como Grupo de Ajuda, Grupo de Ajuda Avançada, Grupo de Usuários de Relatório e URL de Relatórios do MBAM. A URL de Relatórios do MBAM deve ser fornecida na configuração do MBAM e deve ser lida como: http(s)://servername/ReportServer.
 
-### Nome do SQL Server e nomes de banco de dados (DB)
+### <a name="sql-server-name-and-database-db-names"></a>SQL Server nome e banco de dados (DB)
 
-Para localizar os nomes e instâncias do SQL Server que hospedam os bancos de MBAM, faça logon no servidor Web do MBAM (IIS) e navegue até a subchave do registro do folowing:
+Para encontrar os SQL Server e instâncias que hospedam os DBs do MBAM, faça logoff no servidor do MBAM Web (IIS) e navegue até a subchame de registro de acesso:
 
-**HKEY_LOCAL_MACHINE \SOFTWARE\Microsoft\MBAM Server\Web**
+**HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MBAM Server\Web**
 
-![Regedit](images/troubleshooting-MBAM-installation-3.png)
+![Regedit.](images/troubleshooting-MBAM-installation-3.png)
 
-As partes realçadas são cadeias de conexão. Eles devem ter o nome do SQL Server, os nomes de banco de dados e as instâncias (se nomeados).
+As partes realçadas são cadeias de caracteres de conexão. Eles devem ter o nome SQL Server, nomes de banco de dados e instâncias (se nomeado).
 
-### MBAM ReadWrite e ReadOnly
+### <a name="mbam-readwrite-and-readonly-accounts"></a>Contas do MBAM ReadWrite e ReadOnly
 
-Essas informações estarão no banco de dados do SQL Server, para a qual já encontramos o nome do servidor Web.
+Essas informações estarão no banco de dados SQL Server, para o qual já encontramos o nome do servidor Web.
 
-#### Conta ReadWrite
+#### <a name="readwrite-account"></a>Conta ReadWrite
 
-1. Conecte-se ao SQL Management Studio.
+1. Faça logoff no SQL Management Studio.
 
-2. Clique com o botão direito do mouse em **MBAM recuperação e hardware**, selecione **Propriedades**e, em seguida, selecione **permissões**.
+2. Clique com o botão direito do mouse em Recuperação e Hardware do **MBAM,** selecione **Propriedades**e selecione **Permissões**.
 
-Por exemplo, o nome da conta do laboratório é **MBAMWrite**. As contas pool de aplicativos e ReadWrite são definidas para serem iguais.
+Por exemplo, O nome da conta de laboratório é **MBAMWrite**. As contas Pool de Aplicativos e ReadWrite são definidas como as mesmas.
 
-![SQL DB](images/troubleshooting-MBAM-installation-4.png)
+![SQL DB.](images/troubleshooting-MBAM-installation-4.png)
 
-![Propriedades de banco de BD](images/troubleshooting-MBAM-installation-5.png)
+![Propriedades DB.](images/troubleshooting-MBAM-installation-5.png)
 
-Navegue até **segurança** e, em seguida, **logins** no SQL Management Studio. Navegue até a conta mostrada na captura de tela anterior.
+Navegue **até Segurança** e, em seguida, faça **logon** SQL Management Studio. Navegue até a conta mostrada na captura de tela anterior.
 
-![Segurança do SQL](images/troubleshooting-MBAM-installation-6.png)
+![SQL Segurança.](images/troubleshooting-MBAM-installation-6.png)
 
-Clique com o botão direito do mouse nas contas, vá para **Propriedades mapeamento de usuários**e localize o banco de dados de recuperação e hardware do MBAM:
+Clique com o botão direito do mouse nas contas, acesse **Mapeamento de Usuários**de Propriedades e localize o banco de dados de Recuperação e Hardware do MBAM:
 
-![Mapeamento de usuários](images/troubleshooting-MBAM-installation-7.png)
+![Mapeamento de Usuário.](images/troubleshooting-MBAM-installation-7.png)
 
-#### Conta somente leitura
+#### <a name="readonly-account"></a>Conta ReadOnly
 
-Abra o Gerenciador de configuração do SQL Server Reporting Services no servidor SSRS. Selecione a **URL do Gerenciador de relatórios**e, em seguida, navegue pelas **URLs**:
+Abra SQL Server Reporting Services Configuration Manager no Servidor SSRS. Selecione **URL do Gerenciador de Relatório**e, em seguida, navegue pelas **URLs**:
 
-![Gerenciador de relatórios](images/troubleshooting-MBAM-installation-8.png)
+![Gerente de Relatório.](images/troubleshooting-MBAM-installation-8.png)
 
-Selecione **Administração e monitoramento do Microsoft BitLocker**:
+Selecione **Administração e Monitoramento do Microsoft Bitlocker:**
 
-![Administração e monitoramento do BitLocker](images/troubleshooting-MBAM-installation-9.png)
+![Administração e Monitoramento do Bitlocker.](images/troubleshooting-MBAM-installation-9.png)
 
 Selecione **MaltaDatasource**:
 
-![Bancos](images/troubleshooting-MBAM-installation-10.png)
+![DBs.](images/troubleshooting-MBAM-installation-10.png)
 
-![MaltaDatasource](images/troubleshooting-MBAM-installation-11.png)
+![MaltaDatasource.](images/troubleshooting-MBAM-installation-11.png)
 
-MaltaDataSource deve ter o nome da conta ReadOnly e deve ser usado na instalação do MBAM.
+Os MaltaDataSource devem ter o nome da conta ReadOnly e devem ser usados na configuração do MBAM.
 
-## Referência
+## <a name="reference"></a>Referência
 
 Para obter mais informações, consulte os seguintes artigos:
 
-[Implantando o MBAM 2,5 em uma configuração autônoma](https://support.microsoft.com/help/3046555)
+[Implantando o MBAM 2.5 em uma configuração autônoma](https://support.microsoft.com/help/3046555)
 
 [Microsoft BitLocker Administration and Monitoring 2.5](https://docs.microsoft.com/microsoft-desktop-optimization-pack/mbam-v25/)

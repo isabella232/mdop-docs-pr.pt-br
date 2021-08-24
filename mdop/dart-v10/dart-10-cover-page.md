@@ -11,38 +11,38 @@ ms.mktglfcycl: support
 ms.sitesec: library
 ms.prod: w10
 ms.date: 06/16/2016
-ms.openlocfilehash: 0e5ff1069d8be5ec1cd87d4db64e6b8f114c91b3
-ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.openlocfilehash: 6b7f5e1b906f22146016c9c485b02b39edbf083c
+ms.sourcegitcommit: 3e0500abde44d6a09c7ac8e3caf5e25929b490a4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "10796181"
+ms.lasthandoff: 08/23/2021
+ms.locfileid: "11910646"
 ---
-# DaRT 10
+# <a name="dart-10"></a>DaRT 10
 
 
-![logotipo MBAM](images/mbam-logo-sm.gif)
+![logotipo mbam.](images/mbam-logo-sm.gif)
 
-## <a href="" id="administrator-s-guide-for--product-name-"></a>Guia do administrador para o &lt; nome do produto&gt;
+## <a name="administrators-guide-for-ltproduct-namegt"></a><a href="" id="administrator-s-guide-for--product-name-"></a>Guia do administrador para nome &lt; do produto&gt;
 
 
-Publicado: * &lt; data de &gt; publicação*
+Publicado: * &lt; data &gt; publicada*
 
 *Inclua uma visão geral do resumo executivo do produto aqui.*
 
-Este guia descreve como instalar e usar o * &lt; nome &gt; do produto*. Este guia destina-se a administradores e à equipe de ti.
+Este guia descreve como instalar e usar * &lt; o Nome do &gt; Produto.* Este guia destina-se a administradores e funcionários de IT.
 
-Para obter a documentação mais recente do * &lt; nome &gt; do produto*, confira a Home Page *Inserir link aqui* .
+Para ver a documentação mais atual * &lt; para Nome do &gt; Produto,* consulte o link inserir *aqui* na home page.
 
-Para ver as notas de versão do * &lt; nome &gt; do produto*, consulte *Inserir link aqui*.
+Para as notas de versão * &lt; para Nome do &gt; Produto,* consulte inserir link *aqui*.
 
-### Privacidade Jurídica
+### <a name="feedback"></a>Privacidade Jurídica
 
-Envie sugestões e comentários sobre este documento para o <mdopdocs@microsoft.com> .
+Envie sugestões e comentários sobre este documento para <mdopdocs@microsoft.com> .
 
- 
+ 
 
- 
+ 
 
 
 

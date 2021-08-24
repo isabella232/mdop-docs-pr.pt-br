@@ -1,6 +1,6 @@
 ---
-title: Microsoft User Experience Virtualization (UE-V) 2. x
-description: Microsoft User Experience Virtualization (UE-V) 2. x
+title: Microsoft User Experience Virtualization (UE-V) 2.x
+description: Microsoft User Experience Virtualization (UE-V) 2.x
 author: dansimp
 ms.assetid: b860fed0-b846-415d-bdd6-ba60231a64be
 ms.pagetype: mdop, virtualization
@@ -8,37 +8,37 @@ ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.prod: w10
 ms.date: 04/19/2017
-ms.openlocfilehash: 573b8bb2027e5c7f117a8254005a43c656f047a9
-ms.sourcegitcommit: 354664bc527d93f80687cd2eba70d1eea024c7c3
+ms.openlocfilehash: 79748e04ae1a59afdc8f9dae3c5dc77c50e3c253
+ms.sourcegitcommit: 3e0500abde44d6a09c7ac8e3caf5e25929b490a4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "10795442"
+ms.lasthandoff: 08/23/2021
+ms.locfileid: "11910536"
 ---
-# Microsoft User Experience Virtualization (UE-V) 2. x
+# <a name="microsoft-user-experience-virtualization-ue-v-2x"></a>Microsoft User Experience Virtualization (UE-V) 2.x
 
 >[!NOTE]
->Esta documentação é uma versão do para o UE-V incluída no Microsoft Desktop Optimization Pack (MDOP). Para obter informações sobre a versão mais recente do UE-V que está incluída no Windows 10 Enterprise, consulte [introdução ao UE-v](https://docs.microsoft.com/windows/configuration/ue-v/uev-getting-started).
+>Esta documentação é uma versão para UE-V que foi incluída no Microsoft Desktop Optimization Pack (MDOP). Para obter informações sobre a versão mais recente do UE-V que está incluída no Windows 10 Enterprise, consulte [Introdução com UE-V](https://docs.microsoft.com/windows/configuration/ue-v/uev-getting-started).
 
 
-Capture e centralize as configurações do aplicativo do usuário e as configurações do sistema operacional do Windows implementando o Microsoft User Experience Virtualization (UE-V) 2,0 ou 2,1. Em seguida, aplique essas configurações aos dispositivos que os usuários acessam na sua empresa, como computadores de mesa, laptops ou sessões do Virtual Desktop Infrastructure (VDI).
+Capture e centralize as configurações de aplicativos e Windows do sistema operacional dos usuários implementando o Microsoft User Experience Virtualization (UE-V) 2.0 ou 2.1. Em seguida, aplique essas configurações aos dispositivos que os usuários acessam em sua empresa, como computadores desktop, laptops ou sessões de VDI (infraestrutura de área de trabalho virtual).
 
-**Com a UE-V, você pode...**
+**Com UE-V você pode...**
 
--   Especificar quais configurações de aplicativo e área de trabalho sincronizar
+-   Especificar quais configurações de aplicativo e área de trabalho sincronizam
 
 -   Oferecer as configurações a qualquer momento e em qualquer lugar onde os usuários trabalhem em toda a empresa
 
 -   Criar modelos personalizados para os aplicativos de terceiros ou de linha de negócios
 
--   Recuperar as configurações após a substituição ou atualização de hardware ou depois de refazer a criação de uma nova imagem de uma máquina virtual para seu estado inicial
+-   Recuperar configurações após a substituição ou atualização de hardware ou depois de recuperar uma máquina virtual para seu estado inicial
 
-## Componentes da UE-V 2. x
+## <a name="components-of-ue-v-2x"></a>Componentes do UE-V 2.x
 
 
-Este diagrama mostra como implantados componentes do UE-V trabalham em conjunto para sincronizar as configurações.
+Este diagrama mostra como os componentes UE-V implantados trabalham juntos para sincronizar as configurações.
 
-![diagrama arquitetônico uev2](images/uev2archdiagram.gif)
+![Diagrama de arquitetura uev2.](images/uev2archdiagram.gif)
 
 <table>
 <colgroup>
@@ -53,45 +53,45 @@ Este diagrama mostra como implantados componentes do UE-V trabalham em conjunto 
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><p><strong>UE-V Agent</strong></p></td>
-<td align="left"><p>Instalado em cada computador que precisa sincronizar as configurações, o <strong> UE-V Agent </strong> monitora os aplicativos registrados e o sistema operacional em busca de alterações de configurações e, em seguida, sincroniza essas configurações entre computadores.</p></td>
+<td align="left"><p><strong>UE-V Agente</strong></p></td>
+<td align="left"><p>Instalado em todos os computadores que precisam sincronizar configurações, o agente UE-V monitora aplicativos registrados e o sistema operacional para quaisquer alterações de configurações e, em seguida, sincroniza essas configurações entre <strong> </strong> computadores.</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p><strong>Pacotes de configurações</strong></p></td>
-<td align="left"><p>As configurações do aplicativo e as configurações do Windows são armazenadas em <strong> pacotes de configurações </strong> criados pelo UE-V Agent. Os pacotes de configurações são criados, armazenados localmente e copiados para o local de armazenamento das configurações.</p>
+<td align="left"><p><strong>Configurações pacotes</strong></p></td>
+<td align="left"><p>As configurações de aplicativo e Windows são armazenadas em pacotes <strong> de configurações </strong> criados pelo UE-V Agent. Os pacotes de configurações são criados, armazenados localmente e copiados para o local de armazenamento das configurações.</p>
 <ul>
-<li><p>Os valores de configuração para <strong> aplicativos da área de trabalho </strong> são armazenados quando o usuário fecha o aplicativo.</p></li>
-<li><p>Os valores das <strong> configurações do Windows </strong> são armazenados quando o usuário faz logoff, quando o computador está bloqueado ou quando o usuário se desconecta remotamente de um computador.</p></li>
+<li><p>Os valores de configuração para aplicativos da área de trabalho <strong> </strong> são armazenados quando o usuário fecha o aplicativo.</p></li>
+<li><p>Os valores Windows configurações são armazenados quando o usuário faz o login, quando o computador está bloqueado ou quando o usuário se <strong> </strong> desconecta remotamente de um computador.</p></li>
 </ul>
-<p>O provedor de sincronização determina quando as configurações do aplicativo ou do sistema operacional são lidas a partir dos <strong> pacotes de configurações </strong> e sincronizadas.</p></td>
+<p>O provedor de sincronização determina quando as configurações do aplicativo ou do sistema operacional são lidas Configurações <strong> Pacotes </strong> e sincronizadas.</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p><strong>Local de armazenamento de configurações</strong></p></td>
-<td align="left"><p>Esse é um compartilhamento de rede padrão que os usuários podem acessar. O UE-V Agent verifica o local e cria uma pasta de sistema oculta para armazenar e recuperar as configurações do usuário.</p></td>
+<td align="left"><p><strong>Configurações local de armazenamento</strong></p></td>
+<td align="left"><p>Esse é um compartilhamento de rede padrão que seus usuários podem acessar. O UE-V Agente verifica o local e cria uma pasta oculta do sistema na qual armazenar e recuperar as configurações do usuário.</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p><strong>Modelos de local de configurações</strong></p></td>
-<td align="left"><p>O UE-V usa os arquivos XML como modelos de localização de configurações para monitorar e sincronizar as configurações de aplicativo da área de trabalho e as configurações da área de trabalho do Windows entre computadores Por padrão, alguns modelos de local de configurações estão incluídos na UE-V. Você também pode criar, editar ou validar modelos de local de configurações personalizadas ao <a href="#customapps" data-raw-source="[managing settings synchronization for custom applications](#customapps)"> gerenciar a sincronização de configurações para aplicativos personalizados </a> .</p>
+<td align="left"><p><strong>Configurações de localização</strong></p></td>
+<td align="left"><p>UE-V usa arquivos XML como modelos de localização de configurações para monitorar e sincronizar configurações de aplicativos de área de trabalho e Windows de área de trabalho entre computadores de usuário. Por padrão, alguns modelos de local de configurações são incluídos em UE-V . Você também pode criar, editar ou validar modelos de local de configurações personalizadas gerenciando a sincronização de configurações <a href="#customapps" data-raw-source="[managing settings synchronization for custom applications](#customapps)"> para aplicativos personalizados. </a></p>
 <div class="alert">
-<strong>Observação</strong><br/><p>Os modelos de local de configurações não são necessários para aplicativos do Windows.</p>
+<strong>Observação</strong><br/><p>Configurações de local não são necessários para Windows aplicativos.</p>
 </div>
 <div>
 
 </div></td>
 </tr>
 <tr class="odd">
-<td align="left"><p><strong>Lista de aplicativos do Windows</strong></p></td>
-<td align="left"><p>As configurações para aplicativos do Windows são capturadas e aplicadas dinamicamente. O desenvolvedor do aplicativo especifica as configurações que são sincronizadas para cada aplicativo. O UE-V determina quais aplicativos do Windows estão habilitados para sincronização de configurações usando uma lista gerenciada de aplicativos. Por padrão, essa lista inclui a maioria dos aplicativos do Windows.</p>
-<p>Você pode adicionar ou remover aplicativos na lista de aplicativos do Windows seguindo os procedimentos mostrados <a href="https://technet.microsoft.com/library/dn458925.aspx" data-raw-source="[here](https://technet.microsoft.com/library/dn458925.aspx)"> aqui </a> .</p></td>
+<td align="left"><p><strong>Windows de aplicativos</strong></p></td>
+<td align="left"><p>Configurações para Windows aplicativos são capturados e aplicados dinamicamente. O desenvolvedor do aplicativo especifica as configurações sincronizadas para cada aplicativo. UE-V determina quais aplicativos Windows estão habilitados para sincronização de configurações usando uma lista gerenciada de aplicativos. Por padrão, essa lista inclui a maioria dos Windows aplicativos.</p>
+<p>Você pode adicionar ou remover aplicativos na lista de aplicativos Windows seguindo os procedimentos <a href="https://technet.microsoft.com/library/dn458925.aspx" data-raw-source="[here](https://technet.microsoft.com/library/dn458925.aspx)"> mostrados aqui </a> .</p></td>
 </tr>
 </tbody>
 </table>
 
 
 
-### <a href="" id="customapps"></a>Gerenciando a sincronização de configurações para aplicativos personalizados
+### <a name="managing-settings-synchronization-for-custom-applications"></a><a href="" id="customapps"></a>Gerenciando Configurações sincronização para aplicativos personalizados
 
-Use estes componentes UE-V para criar e gerenciar modelos personalizados para seus aplicativos de terceiros ou de linha de negócios.
+Use esses UE-V para criar e gerenciar modelos personalizados para seus aplicativos de terceiros ou de linha de negócios.
 
 <table>
 <colgroup>
@@ -100,51 +100,51 @@ Use estes componentes UE-V para criar e gerenciar modelos personalizados para se
 </colgroup>
 <tbody>
 <tr class="odd">
-<td align="left"><p><strong>Gerador de UE-V</strong></p></td>
-<td align="left"><p>Use o <strong> UE-V Generator </strong> para criar modelos de localização de configurações personalizadas que você pode distribuir para os computadores dos usuários. O gerador UE-V também permite que você edite um modelo existente ou valide um modelo que foi criado usando outro editor de XML.</p></td>
+<td align="left"><p><strong>UE-V Gerador</strong></p></td>
+<td align="left"><p>Use o UE-V Gerador para criar modelos de local de configurações personalizadas que você pode distribuir para <strong> </strong> computadores do usuário. O UE-V Generator também permite editar um modelo existente ou validar um modelo criado usando outro editor XML.</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p><strong>Catálogo de modelos de configurações</strong></p></td>
-<td align="left"><p>O <strong> Catálogo de modelos de configurações </strong> é um caminho de pasta em computadores UE-V ou um compartilhamento de rede de servidor de mensagens de servidor (SMB) que armazena os modelos de local de configurações personalizadas. O UE-V Agent verifica esse local uma vez por dia, recupera modelos novos ou atualizados e atualiza seu comportamento de sincronização.</p>
-<p>Se você usar somente os modelos de local de configurações padrão do UE-V, um catálogo de modelos de configurações será desnecessário. Para obter mais informações sobre os catálogos de implantação de configurações, consulte <a href="https://technet.microsoft.com/library/dn458942.aspx#deploycatalogue" data-raw-source="[Configure a UE-V settings template catalog](https://technet.microsoft.com/library/dn458942.aspx#deploycatalogue)"> configurar um catálogo de modelos de configurações de UE-V </a> .</p></td>
+<td align="left"><p><strong>Configurações catálogo de modelos</strong></p></td>
+<td align="left"><p>O catálogo de modelos de configurações é um caminho de pasta em computadores UE-V ou um compartilhamento de rede <strong> do SMB (Server Message Block) que armazena os modelos de local de configurações </strong> personalizadas. O UE-V agente verifica esse local uma vez por dia, recupera modelos novos ou atualizados e atualiza seu comportamento de sincronização.</p>
+<p>Se você usar apenas os UE-V de local de configurações padrão, um catálogo de modelos de configurações será desnecessário. Para obter mais informações sobre configurações de catálogos de implantação, consulte <a href="https://technet.microsoft.com/library/dn458942.aspx#deploycatalogue" data-raw-source="[Configure a UE-V settings template catalog](https://technet.microsoft.com/library/dn458942.aspx#deploycatalogue)"> Configure a UE-V settings template catalog </a> .</p></td>
 </tr>
 </tbody>
 </table>
 
 
 
-![processo de gerador de UE-v](images/ue-vgeneratorprocess.gif)
+![Processo do gerador ue-v.](images/ue-vgeneratorprocess.gif)
 
-## Configurações sincronizadas por padrão
+## <a name="settings-synchronized-by-default"></a>Configurações Sincronizado por padrão
 
 
-Por padrão, o UE-V sincroniza as configurações desses aplicativos. Para obter uma lista completa e informações mais detalhadas, consulte [configurações que são sincronizadas automaticamente em uma implantação do UE-V](https://technet.microsoft.com/library/dn458932.aspx#autosyncsettings).
+UE-V sincroniza configurações para esses aplicativos por padrão. Para obter uma lista completa e informações mais detalhadas, consulte Configurações que são sincronizadas automaticamente [em uma UE-V implantação](https://technet.microsoft.com/library/dn458932.aspx#autosyncsettings).
 
-Aplicativos do Microsoft Office 2013 (UE-V 2,1 SP1 e 2,1)
+Microsoft Office aplicativos 2013 (UE-V 2.1 SP1 e 2.1)
 
-Aplicativos do Microsoft Office 2010 (UE-V 2,1 SP1, 2,1 e 2,0)
+Microsoft Office aplicativos 2010 (UE-V 2.1 SP1, 2.1 e 2.0)
 
-Aplicativos do Microsoft Office 2007 (somente para o UE-V 2,0)
+Microsoft Office aplicativos 2007 (UE-V somente 2.0)
 
 Internet Explorer 8, 9 e 10
 
-Internet Explorer 11 no UE-V 2,1 SP1 e 2,1
+Internet Explorer 11 em UE-V 2.1 SP1 e 2.1
 
-Muitos aplicativos do Windows, como o Xbox
+Muitos Windows aplicativos, como o Xbox
 
-Muitos aplicativos da área de trabalho do Windows, como o bloco de notas
+Muitos Windows de área de trabalho, como Bloco de notas
 
-Muitas configurações do Windows, como plano de fundo da área de trabalho ou papel de parede
+Muitas Windows, como plano de fundo da área de trabalho ou papel de parede
 
 **Observação**  
-Você também pode [Personalizar o UE-V para sincronizar as configurações](https://technet.microsoft.com/library/dn458942.aspx) de aplicativos diferentes das sincronizadas por padrão.
+Você também pode [personalizar UE-V para sincronizar](https://technet.microsoft.com/library/dn458942.aspx) configurações para aplicativos diferentes daqueles sincronizados por padrão.
 
 
 
-## Comparar o UE-V com outros produtos da Microsoft
+## <a name="compare-ue-v-to-other-microsoft-products"></a>Comparar UE-V com outros produtos Microsoft
 
 
-Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincronizar perfis no Windows 8 e o recurso configurações do computador de sincronização da conta da Microsoft.
+Use esta tabela para comparar UE-V a Sincronizar Perfis no Windows 7, Sincronizar Perfis no Windows 8 e o recurso Sincronizar Configurações pc da conta da Microsoft.
 
 <table style="width:100%;">
 <colgroup>
@@ -159,12 +159,12 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <thead>
 <tr class="header">
 <th align="left">Recurso</th>
-<th align="left">Sincronizar perfis usando o Windows 7</th>
-<th align="left">Sincronizar perfis usando o Windows 8</th>
-<th align="left">Sincronizar perfis usando o Windows 10</th>
+<th align="left">Sincronizar perfis usando Windows 7</th>
+<th align="left">Sincronizar perfis usando Windows 8</th>
+<th align="left">Sincronizar perfis usando Windows 10</th>
 <th align="left">Conta Microsoft</th>
-<th align="left">UE-V 2,0</th>
-<th align="left">UE-V 2,1 e 2,1 SP1</th>
+<th align="left">UE-V 2.0</th>
+<th align="left">UE-V 2.1 e 2.1 SP1</th>
 </tr>
 </thead>
 <tbody>
@@ -187,7 +187,7 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <td align="left"><p>●</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Sincronizar configurações do aplicativo do Windows</p></td>
+<td align="left"><p>Sincronizar Windows configurações do aplicativo</p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
@@ -205,7 +205,7 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <td align="left"><p>●</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Sincronizar alterações de configurações regularmente</p></td>
+<td align="left"><p>Sincronizar as alterações de configurações regularmente</p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
@@ -214,7 +214,7 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <td align="left"><p>●</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p>Configuração mínima para a instalação</p></td>
+<td align="left"><p>Configuração mínima para Instalação</p></td>
 <td align="left"><p>●</p></td>
 <td align="left"><p>●</p></td>
 <td align="left"><p>●</p></td>
@@ -223,7 +223,7 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <td align="left"><p>●</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Com suporte em computadores não associados ao domínio</p></td>
+<td align="left"><p>Suportado em computadores não ingressados no domínio</p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
@@ -232,7 +232,7 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <td align="left"><p></p></td>
 </tr>
 <tr class="even">
-<td align="left"><p>Compatível com o atributo do Active Directory do computador principal</p></td>
+<td align="left"><p>Dá suporte ao atributo Primary Computer Active Directory</p></td>
 <td align="left"><p></p></td>
 <td align="left"><p>●</p></td>
 <td align="left"><p>●</p></td>
@@ -241,7 +241,7 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <td align="left"><p></p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Sincroniza as configurações entre os serviços de área de trabalho (RDS) e os serviços de área de trabalho avançados do Virtual Desktop Infrastructure (VDI)</p></td>
+<td align="left"><p>Sincroniza as configurações entre a infraestrutura de área de trabalho virtual (VDI)/Serviços de Área de Trabalho Remota (RDS) e áreas de trabalho ricas</p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
@@ -250,7 +250,7 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <td align="left"><p>●</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p>Espaço de armazenamento de configuração ilimitada</p></td>
+<td align="left"><p>Espaço de armazenamento de configuração ilimitado</p></td>
 <td align="left"><p>●</p></td>
 <td align="left"><p>●</p></td>
 <td align="left"><p>●</p></td>
@@ -259,7 +259,7 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <td align="left"><p>●</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Escolha de quais configurações do aplicativo sincronizar</p></td>
+<td align="left"><p>Escolha em que configurações de aplicativo sincronizar</p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
@@ -268,7 +268,7 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 <td align="left"><p>●</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p>Backup/restauração para profissionais de ti</p></td>
+<td align="left"><p>Backup/restauração para Pro</p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
 <td align="left"><p></p></td>
@@ -281,10 +281,10 @@ Use esta tabela para comparar o UE-V para sincronizar perfis no Windows 7, sincr
 
 
 
-## Notas da versão do UE-V 2. x
+## <a name="ue-v-2x-release-notes"></a>UE-V Notas de versão 2.x
 
 
-Para saber mais e saber mais sobre as últimas notícias que não o fizeram na documentação, consulte
+Para obter mais informações e notícias de última hora que não entraram na documentação, consulte
 
 -   [Notas de versão da Virtualização de Experiência do Usuário (UE-V) 2.1 SP1 da Microsoft](microsoft-user-experience-virtualization--ue-v--21-sp1-release-notes.md)
 
@@ -292,24 +292,24 @@ Para saber mais e saber mais sobre as últimas notícias que não o fizeram na d
 
 -   [Notas de versão da Virtualização de Experiência do Usuário (UE-V) 2.0 da Microsoft](microsoft-user-experience-virtualization--ue-v--20-release-notesuevv2.md)
 
-## Outros recursos para este produto
+## <a name="other-resources-for-this-product"></a>Outros recursos para este produto
 
 
 -   [Introdução ao UE-V 2.x](get-started-with-ue-v-2x-new-uevv2.md)
 
--   [Preparar uma implantação do UE-V 2. x](prepare-a-ue-v-2x-deployment-new-uevv2.md)
+-   [Preparar uma implantação UE-V 2.x](prepare-a-ue-v-2x-deployment-new-uevv2.md)
 
--   [Administração do UE-V 2. x](administering-ue-v-2x-new-uevv2.md)
+-   [Administrando UE-V 2.x](administering-ue-v-2x-new-uevv2.md)
 
--   [Solução de problemas do UE-V 2. x](troubleshooting-ue-v-2x-both-uevv2.md)
+-   [Solução de UE-V 2.x](troubleshooting-ue-v-2x-both-uevv2.md)
 
 -   [Referência técnica da UE-V 2.x](technical-reference-for-ue-v-2x-both-uevv2.md)
 
-### Mais informações
+### <a name="more-information"></a>Mais informações
 
-<a href="" id="mdop-techcenter-page"></a>[Página do TechCenter do MDOP](https://go.microsoft.com/fwlink/p/?LinkId=225286) Saiba mais sobre as informações e os recursos mais recentes do MDOP.
+<a href="" id="mdop-techcenter-page"></a>[Página do TechCenter do MDOP](https://go.microsoft.com/fwlink/p/?LinkId=225286) Saiba mais sobre as informações e recursos mais recentes do MDOP.
 
-<a href="" id="mdop-information-experience"></a>[Experiência de informações do MDOP](https://go.microsoft.com/fwlink/p/?LinkId=236032) Encontre documentação, vídeos e outros recursos para tecnologias do MDOP. Você também pode [enviar comentários](mailto:MDOPDocs@microsoft.com) ou saber mais sobre atualizações seguindo-nos no [Facebook](https://go.microsoft.com/fwlink/p/?LinkId=242445) ou [Twitter](https://go.microsoft.com/fwlink/p/?LinkId=242447).
+<a href="" id="mdop-information-experience"></a>[Experiência de Informações do MDOP](https://go.microsoft.com/fwlink/p/?LinkId=236032) Encontre documentação, vídeos e outros recursos para tecnologias MDOP. Você também pode [nos enviar comentários ou](mailto:MDOPDocs@microsoft.com) saber mais sobre atualizações nos seguindo no [Facebook](https://go.microsoft.com/fwlink/p/?LinkId=242445) ou [Twitter.](https://go.microsoft.com/fwlink/p/?LinkId=242447)
 
 
 
